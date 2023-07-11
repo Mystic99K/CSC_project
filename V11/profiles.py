@@ -28,27 +28,28 @@ def main_menu():
         print('2. Options')
         print('3. Exit')
 
-        choice_p = input('Enter your choice : ')
+        while True:
+            choice_p = input('Enter your choice : ')
 
-        if not choice_p.isdigit():  # Checking if input has no alphabets
-            print('Error:Invalid Input,Input contained String')
-            error.error_handle(100)
+            if not choice_p.isdigit():  # Checking if input has no alphabets
+                print('Error:Invalid Input,Input contained String')
+                error.error_handle(100)
 
-        else:
-            choice_p = int(choice_p)
-
-        if choice_p == 1:
-            city = select_profile()
-            if city:
-                return city
             else:
-                continue
+                choice_p = int(choice_p)
 
-        elif choice_p == 2:
-            option()
+            if choice_p == 1:
+                city = select_profile()
+                if city:
+                    return city
+                else:
+                    break
 
-        else:
-            return True
+            elif choice_p == 2:
+                option()
+
+            elif choice_p == 3:
+                return True
 
 
 def select_profile():
