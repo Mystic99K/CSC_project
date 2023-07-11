@@ -233,7 +233,7 @@ def edit_prof():
             conn.commit()
             conn.close()
 
-        elif choice == 2:
+        elif choice == 2: # fix this
             pass
 
         else:
