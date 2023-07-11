@@ -39,7 +39,7 @@ def main_menu():
                 choice_p = int(choice_p)
 
             if choice_p == 1:
-                city = select_profile()
+                city = select_profile_city()
                 if city:
                     return city
                 else:
@@ -52,7 +52,7 @@ def main_menu():
                 return True
 
 
-def select_profile():
+def select_profile_city():
     conn = sqlite3.connect('profile.db')
     cursor = conn.cursor()
 
@@ -101,7 +101,8 @@ def option():
     while True:
         print('1. Add new profile')
         print('2. Remove profile')
-        print('3. Go back to profile selection')
+        print('3. Edit profile')
+        print('4. Go back to profile selection')
 
         while True:
             choice_o = input('Enter your choice : ')
@@ -110,7 +111,7 @@ def option():
                 print('Error:Invalid Input,Input contained String')
                 error.error_handle(100)
 
-            elif choice_o != '1' and choice_o != '2' and choice_o != '3':  # Checking if input is not out of range
+            elif int(choice_o) not in [1,2,3,4]:  # Checking if input is not out of range
                 print('Error:Invalid Input')
                 error.error_handle(101)
 
@@ -126,7 +127,10 @@ def option():
         elif choice_o == 2:
             del_prof()
 
-        else:
+        elif choice_o == 3:
+            edit_prof()
+
+        elif choice_o == 4:
             break
 
 
@@ -200,3 +204,86 @@ def del_prof():
         print(del_usr, '- was not removed')
 
     print()
+
+
+def edit_prof():
+    prof = select_profile_name()
+    if not prof:
+        return False
+    else:
+        print('1. Edit name')
+        print('2. Edit city')
+
+        choice = input('Enter your choice : ')
+
+        if not choice.isdigit():  # Checking if input has no alphabets
+            print('Error:Invalid Input,Input contained String')
+            error.error_handle(100)
+
+        else:
+            choice = int(choice)
+
+        if choice == 1:
+            prof_name = input('Enter new profile : ')
+            conn = sqlite3.connect('profile.db')
+            cursor = conn.cursor()
+
+            edit_prof = f"UPDATE profile SET name = '{prof}' WHERE name = '{prof_name}';"
+            cursor.execute(edit_prof)
+            conn.commit()
+            conn.close()
+
+        elif choice == 2:
+            pass
+
+        else:
+            print('Error')
+
+
+
+
+
+def select_profile_name():
+    conn = sqlite3.connect('profile.db')
+    cursor = conn.cursor()
+
+    prof = input('Enter the profile name : ')
+
+    row_name = []  # Used to append all rows
+    cursor.execute('SELECT * FROM profile')
+    for row in cursor:  # View the table
+        row_name.append(row[1])
+
+    if prof in row_name:
+        row_list = []
+        cursor.execute('SELECT * FROM profile')
+        prof_index = row_name.index(prof)
+        for row in cursor:  # View the table
+            row_list.append(row)
+
+        prof_name = row_list[prof_index][1]
+        prof_prot_check = password.pass_prot_check(prof_name)  # ______CHANGE VARIABLES NAME______
+
+        if prof_prot_check:
+            if password.pass_check(prof_name):
+                name = row_list[prof_index][1]
+                print()
+                return name
+
+        else:
+            name = row_list[prof_index][1]
+            return name
+
+    else:
+        name = search.fuzz_search(prof, row_name)  # __________Error for inputting wrong profile name__________
+        print()
+
+        if name:
+            return name
+
+        else:
+            print('Profile was not selected of edition')
+            return False
+
+
+main_menu()
