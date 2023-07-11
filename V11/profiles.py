@@ -1,6 +1,7 @@
 import sqlite3
 import error  # Importing error.py
 import password  # Importing password.py
+import search  # Importing search.py
 
 db_exists = False  # Used to check in database exists
 
@@ -70,7 +71,8 @@ def select_profile():
                 city = row_list[prof_index][2]
                 print()
                 return city
-
+        else:
+            search.fuzz_search(row_name)
 
 def option():
     print()

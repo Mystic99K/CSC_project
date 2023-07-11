@@ -9,13 +9,20 @@ def encrypt_file(data):
     pass_byte = bytes(pass_w, "utf-8")
     encrypted_data = base64.b64encode(pass_byte)
 
+
     with open('password.enc', "wb") as file:
         file.write(encrypted_data)
 
 
 def decrypt_file():
-    with open('password.enc', "rb") as file:
-        encrypted_data = file.read()
+    try:
+        with open('password.enc', "rb") as file:
+            encrypted_data = file.read()
+    except:
+        with open('password.enc', "wb") as file:
+            pass
+        with open('password.enc', "rb") as file:
+            encrypted_data = file.read()
 
     decrypted_data = base64.b64decode(encrypted_data)
     dec_nf_l_ns = str(decrypted_data)[:-1]
