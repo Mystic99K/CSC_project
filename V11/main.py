@@ -92,7 +92,7 @@ def calling():
 
 while True:
     back = False
-    usr_city = profiles.profile()
+    usr_city = profiles.main_menu()
     if usr_city == True:  # Used to end the program
         print('Closing Program...')
         break

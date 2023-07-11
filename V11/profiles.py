@@ -3,10 +3,11 @@ import error  # Importing error.py
 import password  # Importing password.py
 import search  # Importing search.py
 
+
 db_exists = False  # Used to check in database exists
 
-def main_menu():
 
+def main_menu():
     while True:
         global db_exists
         conn = sqlite3.connect('profile.db')
@@ -37,7 +38,11 @@ def main_menu():
             choice_p = int(choice_p)
 
         if choice_p == 1:
-            return select_profile()
+            city = select_profile()
+            if city:
+                return city
+            else:
+                continue
 
         elif choice_p == 2:
             option()
@@ -66,13 +71,29 @@ def select_profile():
 
         prof_name = row_list[prof_index][1]
         prof_prot_check = password.pass_prot_check(prof_name)  # ______CHANGE VARIABLES NAME______
+
         if prof_prot_check:
             if password.pass_check(prof_name):
                 city = row_list[prof_index][2]
                 print()
                 return city
+
         else:
-            search.fuzz_search(row_name)
+            city = row_list[prof_index][2]
+            return city
+
+    else:
+        city = search.fuzz_search(prof, row_name)
+        print()
+
+        if city:
+            return city
+
+        else:
+            return False
+
+
+
 
 def option():
     print()
@@ -178,8 +199,3 @@ def del_prof():
         print(del_usr, '- was not removed')
 
     print()
-
-
-
-
-main_menu()

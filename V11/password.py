@@ -1,7 +1,7 @@
 import sqlite3
+import getpass
 import error  # Importing error.py
 import encrypt  # Importing encrypt.py
-import getpass
 
 
 def pass_create(name):

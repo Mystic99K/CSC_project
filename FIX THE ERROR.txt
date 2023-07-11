@@ -1,42 +1,28 @@
 
 
-Enter name of the profile : 1
-Enter name of the city : sd
-Do you want the profile to be password protected? (Y/y/N/n) : n
-1 - Added successfully
-
-1. Add new profile
-2. Remove profile
-3. Go back to profile selection
-Enter your choice : 2
-
-1. Guest
-2. Shashank
-3. Tariq
-4. test1
-5. test2
-6. test3
-7. test4
-8. 1
-Enter your choice : 8
-1 - was not removed
+1. Login
+2. Options
+3. Exit
+Enter your choice : shasha
+Error:Invalid Input,Input contained String
+Closing Program...
 
 
-
-######################################################################################################################################################################################
-
+##################################################################################################################################
 
 
+1. Show all Weather report
+2. Temperature
+3. Wind
+4. Visibility
+5. Enter a different city
+6. Change profiles
+Enter your choice : 6
 
-Decrypted data not proper format : ["b''"]
-Decrypted data with proper format ["'"]
-Decrypted raw data : b'dGVzdDEgdGVzdF8xXzEyMzQ1Ni0n'
-b"test1 test_1_123456-'"
-Decrypted data not proper format : ['b"test1 test_1_123456', '\'"']
-Decrypted data with proper format ['test1 test_1_123456', '\'"']
-
-
-
+1. Login
+2. Options
+3. Exit
+Enter your choice : 
 
 
 

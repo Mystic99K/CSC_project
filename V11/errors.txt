@@ -5,6 +5,7 @@
 101:'Invalid input'
 102:'Entered password do not match'
 103:'Incorrect password entered'
+104:'Enter profile was not found within database'
 
 
 
