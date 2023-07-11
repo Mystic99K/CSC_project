@@ -1,0 +1,10 @@
+401:'API key provided is invalid.'
+400:'API request is invalid'
+403:'API key has exceeded calls per month quota.'
+100:'Invalid Input,Input contained String'
+101:'Invalid input'
+
+
+
+
+
