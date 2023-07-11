@@ -3,7 +3,20 @@ import colorama
 import profiles  # Importing profiles.py
 import error  # Importing error.py
 
+colorama.init()
+# Color definitons
 ################################
+c_black = colorama.Fore.BLACK
+c_red = colorama.Fore.RED
+c_green = colorama.Fore.GREEN
+c_yellow = colorama.Fore.YELLOW
+c_blue = colorama.Fore.BLUE
+c_magenta = colorama.Fore.MAGENTA
+c_cyan = colorama.Fore.CYAN
+c_white = colorama.Fore.WHITE
+c_reset = colorama.Fore.RESET
+###############################
+
 
 API_KEY = "5c443b217be241e6b75175940230507"  # trq main acc
 
@@ -20,7 +33,7 @@ def get_weather_data(city):  # Getting API response
 
 
 def dis_weather_temp():
-    print(green('Temperature', ['bold']))  # Temperature data
+    print(c_yellow + 'Temperature' + c_reset)  # Temperature data
     print()
     print(f"Temperature(°C): {weather_data['current']['temp_c']}°C")
     print(f"Temperature(°F): {weather_data['current']['temp_f']}°F")
@@ -31,7 +44,7 @@ def dis_weather_temp():
 
 
 def dis_weather_wind():
-    print(black('Wind', ['bold']))  # Wind data
+    print(c_blue + 'Wind' + c_reset)  # Wind data
     print()
     print(f"Wind Speed(mph): {weather_data['current']['wind_mph']}m/h")
     print(f"Max Wind Speed(mph): {weather_data['current']['gust_mph']}m/h")
@@ -44,7 +57,7 @@ def dis_weather_wind():
 
 
 def dis_weather_vis():
-    print(blue('Visibility', ['bold']))  # Visibility data
+    print(c_green + 'Visibility' + c_reset)  # Visibility data
     print()
     print(f"Visibility(km): {weather_data['current']['vis_km']}")
     print(f"Visibility(Miles): {weather_data['current']['vis_miles']}")
