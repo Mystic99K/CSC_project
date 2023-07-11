@@ -30,4 +30,3 @@ def fuzz_search(prof_name, name_list):
         print('Error:No such profile found, going back to main menu')
         error.error_handle(104)
         return False
-
