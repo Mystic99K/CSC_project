@@ -53,6 +53,7 @@
 7/10/2023 20:21:19	ERROR:103 - 'Incorrect password entered'
 7/10/2023 20:21:43	ERROR:103 - 'Incorrect password entered'
 7/10/2023 20:22:0	ERROR:100 - 'Invalid Input,Input contained String'
+7/11/2023 17:32:4	ERROR:100 - 'Invalid Input,Input contained String'
 7/11/2023 18:13:6	ERROR:400 - 'API request is invalid'
 7/11/2023 18:14:37	ERROR:100 - 'Invalid Input,Input contained String'
 7/11/2023 18:15:16	ERROR:400 - 'API request is invalid'
@@ -63,3 +64,4 @@
 7/11/2023 19:19:35	ERROR:100 - 'Invalid Input,Input contained String'
 7/11/2023 19:19:51	ERROR:100 - 'Invalid Input,Input contained String'
 7/11/2023 19:20:23	ERROR:100 - 'Invalid Input,Input contained String'
+7/12/2023 2:11:9	ERROR:104 - 'Enter profile was not found within database'

@@ -1,8 +1,9 @@
 import requests
-from simple_colors import *
+import colorama
 import profiles  # Importing profiles.py
 import error  # Importing error.py
 
+################################
 
 API_KEY = "5c443b217be241e6b75175940230507"  # trq main acc
 
