@@ -1,3 +1,3 @@
-Sdo not copy anything from this repo
+Do not copy anything from this repo.
 
-ICSK stay away
+ICSK Students stay away.
