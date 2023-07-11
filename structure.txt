@@ -29,3 +29,4 @@ Settings menu: (config file in csv file)
     imperial/metric
     Log on/off (text file)
     
+TODOS:

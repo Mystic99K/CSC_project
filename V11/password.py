@@ -1,6 +1,6 @@
 import sqlite3
 import error  # Importing error.py
-import enc  # Importing enc.py
+import encrypt  # Importing encrypt.py
 import getpass
 
 
@@ -35,7 +35,7 @@ def pass_create(name):
 
     pass_code = prof_pass_1
     pass_l = [name + ' ' + pass_code + '-']
-    enc.encrypt_file(pass_l)
+    encrypt.encrypt_file(pass_l)
     return pass_prot
 
 
@@ -45,7 +45,7 @@ def pass_check(name):
         pass_code = getpass.getpass("Enter profile's password or CANCEL to cancel : ")
         if pass_code == 'CANCEL':
             return check
-        dec_pass_l = enc.decrypt_file()
+        dec_pass_l = encrypt.decrypt_file()
 
         for line in dec_pass_l:
             if line.split()[0] == name and line.split()[1] == pass_code:
