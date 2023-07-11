@@ -22,6 +22,7 @@ def main_menu():
 
         conn.commit()  # Commit the changes to the database
 
+        print('1. Login')
         print('2. Options')
         print('3. Exit')
 
@@ -69,16 +70,6 @@ def select_profile():
                 city = row_list[prof_index][2]
                 print()
                 return city
-
-
-
-
-
-
-
-
-
-
 
 
 def option():
