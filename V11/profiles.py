@@ -16,7 +16,7 @@ def main_menu():
         if not db_exists:
             try:
                 # Creating the table even if it already exists
-                create_table_query = """CREATE TABLE profile (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, city TEXT, pass_prot BOOLEAN);"""
+                create_table_query = 'CREATE TABLE profile (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, city TEXT, pass_prot BOOLEAN);'
                 cursor.execute(create_table_query)
             except:
                 pass
@@ -31,26 +31,30 @@ def main_menu():
         while True:
             choice_p = input('Enter your choice : ')
 
-            if not choice_p.isdigit():  # Checking if input has no alphabets
+            if not choice_p.isdigit():  # Checking if input has alphabets
                 print('Error:Invalid Input,Input contained String')
                 error.error_handle(100)
 
             else:
                 choice_p = int(choice_p)
 
+            if choice_p not in [1, 2, 3]:  # Checking if the input is out of range
+                print('Error:Invalid Input')
+                error.error_handle(101)
+
             if choice_p == 1:
                 city = select_profile_city()
 
                 if city:
                     return city
-                else:
+                else:  # User has failed to enter correct password or username OR has chose to go back to main menu
                     break
 
             elif choice_p == 2:
                 option()
                 break
 
-            elif choice_p == 3:
+            elif choice_p == 3:  # Closing program
                 return True
 
 
@@ -60,7 +64,7 @@ def select_profile_city():
 
     prof = input('Enter the profile name : ')
 
-    row_name = []  # Used to append all rows
+    row_name = []  # Used to append all usernames from database
     cursor.execute('SELECT * FROM profile')
 
     for row in cursor:  # View the table
@@ -69,31 +73,31 @@ def select_profile_city():
     if prof in row_name:
         row_list = []
         cursor.execute('SELECT * FROM profile')
-        prof_index = row_name.index(prof)
+        prof_index = row_name.index(prof)  # Getting index of the user's data, used for splicing
 
-        for row in cursor:  # View the table
+        for row in cursor:  # Getting all data from database, this will be then spliced
             row_list.append(row)
 
-        prof_prot_check = password.pass_prot_check(prof)  # ______CHANGE VARIABLES NAME______
+        prof_prot_check = password.pass_prot_check(prof)  # Used to check if the profile is password protected or not
 
         if prof_prot_check:
-            if password.pass_check(prof):
+            if password.pass_check(prof):  # Used to check if the user knows the password of the profile
                 city = row_list[prof_index][2]
                 print()
                 return city
 
-        else:
+        else:  # If the profile has no password protection
             city = row_list[prof_index][2]
             return city
 
-    else:
+    else:  # Used to search the entered profile name, if entered profile name is not in database
         city = search.fuzz_search(prof, row_name)
         print()
 
         if city:
             return city
 
-        else:
+        else:  # If the user as entered a profile name that is not there within the database
             return False
 
 
@@ -108,11 +112,11 @@ def option():
         while True:
             choice_o = input('Enter your choice : ')
 
-            if not choice_o.isdigit():  # Checking if input has no alphabets
+            if not choice_o.isdigit():  # Checking if input has alphabets
                 print('Error:Invalid Input,Input contained String')
                 error.error_handle(100)
 
-            elif int(choice_o) not in [1, 2, 3, 4]:  # Checking if input is not out of range
+            elif int(choice_o) not in [1, 2, 3, 4]:  # Checking if input is out of range
                 print('Error:Invalid Input')
                 error.error_handle(101)
 

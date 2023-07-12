@@ -4,7 +4,7 @@ import profiles  # Importing profiles.py
 import error  # Importing error.py
 
 colorama.init()
-# Color definitons
+# Color definitions
 ################################
 c_black = colorama.Fore.BLACK
 c_red = colorama.Fore.RED
@@ -106,10 +106,12 @@ def calling():
 
 while True:
     back = False
-    usr_city = profiles.main_menu()
+    usr_city = profiles.main_menu()  # Getting name of the city
+
     if usr_city == True:  # Used to end the program
         print('Closing Program...')
         break
+
     while True:
         if usr_city == 'Null':  # Guest user or user wants to enter another city
             usr_city = input(
@@ -118,12 +120,13 @@ while True:
                 break
             weather_data = get_weather_data(usr_city)  # Getting weather data from api by providing city
             calling()
-            if back:
+            if back:  # Going back to main menu
                 break
             usr_city = 'Null'  # Used to ensure no error
+
         else:  # Profile other than Guest is selected
             weather_data = get_weather_data(usr_city)  # Getting weather data from api by providing city
             calling()
-            if back:
+            if back:  # Going back to main menu
                 break
             usr_city = 'Null'  # User selected to enter another city
