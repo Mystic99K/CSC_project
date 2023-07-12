@@ -3,6 +3,7 @@ import error  # Importing error.py
 import password  # Importing password.py
 import search  # Importing search.py
 
+
 db_exists = False  # Used to check in database exists
 
 
@@ -39,6 +40,7 @@ def main_menu():
 
             if choice_p == 1:
                 city = select_profile_city()
+
                 if city:
                     return city
                 else:
@@ -60,6 +62,7 @@ def select_profile_city():
 
     row_name = []  # Used to append all rows
     cursor.execute('SELECT * FROM profile')
+
     for row in cursor:  # View the table
         row_name.append(row[1])
 
@@ -67,6 +70,7 @@ def select_profile_city():
         row_list = []
         cursor.execute('SELECT * FROM profile')
         prof_index = row_name.index(prof)
+
         for row in cursor:  # View the table
             row_list.append(row)
 
@@ -155,6 +159,7 @@ def del_prof():
         counter = 0
         count_l = []
         row_l = []
+
         for row in cursor:  # Displaying all profiles
             counter += 1
             print(counter, '. ', row[1], sep='')
@@ -174,7 +179,6 @@ def del_prof():
 
         in_row = count_l.index(choice_p)
         q_row = row_l[in_row]
-
         q_get_rec = f'SELECT * FROM profile WHERE id IS {q_row}'
         cursor.execute(q_get_rec)
 
@@ -182,12 +186,16 @@ def del_prof():
             del_usr = row[1]
 
         pass_prot_ch = password.pass_prot_check(del_usr)
+
         if pass_prot_ch:
             prof_del = password.pass_check(del_usr)
+
             if not prof_del:
                 break
+
         else:
             prof_del = True
+
         q_del_rec = f"DELETE FROM profile WHERE id = {q_row};"
         cursor.execute(q_del_rec)
         conn.commit()
@@ -212,6 +220,7 @@ def edit_prof():
 
     else:
         prof_id = select_profile_id(prof_name)
+
         print('1. Edit name')
         print('2. Edit city')
 
@@ -252,21 +261,22 @@ def select_profile_name():
     conn = sqlite3.connect('profile.db')
     cursor = conn.cursor()
 
-    prof = input('Enter the profile name : ')
+    prof_name = input('Enter the profile name : ')
 
     row_name = []  # Used to append all rows
     cursor.execute('SELECT * FROM profile')
+
     for row in cursor:  # View the table
         row_name.append(row[1])
 
-    if prof in row_name:
+    if prof_name in row_name:
         row_list = []
         cursor.execute('SELECT * FROM profile')
-        prof_index = row_name.index(prof)
+        prof_index = row_name.index(prof_name)
+
         for row in cursor:  # View the table
             row_list.append(row)
 
-        prof_name = row_list[prof_index][1]
         prof_prot_check = password.pass_prot_check(prof_name)  # ______CHANGE VARIABLES NAME______
 
         if prof_prot_check:
@@ -280,7 +290,7 @@ def select_profile_name():
             return name
 
     else:
-        name = search.fuzz_search(prof, row_name)  # __________Error for inputting wrong profile name__________
+        name = search.fuzz_search(prof_name, row_name)  # __________Error for inputting wrong profile name__________
         print()
 
         if name:
@@ -293,9 +303,9 @@ def select_profile_name():
 def select_profile_id(prof_name):
     conn = sqlite3.connect('profile.db')
     cursor = conn.cursor()
-
     row_name = []  # Used to append all rows
     cursor.execute('SELECT * FROM profile')
+
     for row in cursor:  # View the table
         row_name.append(row[1])
 
@@ -303,6 +313,7 @@ def select_profile_id(prof_name):
         row_list = []
         cursor.execute('SELECT * FROM profile')
         prof_index = row_name.index(prof_name)
+
         for row in cursor:  # View the table
             row_list.append(row)
 
@@ -325,6 +336,7 @@ def select_profile_id(prof_name):
             row_list = []
             cursor.execute('SELECT * FROM profile')
             prof_index = row_name.index(prof_name)
+
             for row in cursor:  # View the table
                 row_list.append(row)
 
@@ -342,6 +354,3 @@ def select_profile_id(prof_name):
         else:
             print('Profile was not selected of edition')
             return False
-
-
-main_menu()
