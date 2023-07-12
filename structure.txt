@@ -30,3 +30,4 @@ Settings menu: (config file in csv file)
     Log on/off (text file)
     
 TODOS:
+1. check pyutls.py for output
