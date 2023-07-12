@@ -78,3 +78,6 @@
 7/12/2023 15:49:49	ERROR:104 - 'Enter profile was not found within database'
 7/12/2023 15:50:1	ERROR:104 - 'Enter profile was not found within database'
 7/12/2023 15:57:6	ERROR:104 - 'Enter profile was not found within database'
+7/12/2023 18:59:32	ERROR:104 - 'Enter profile was not found within database'
+7/12/2023 19:0:32	ERROR:104 - 'Enter profile was not found within database'
+7/12/2023 19:0:39	ERROR:104 - 'Enter profile was not found within database'

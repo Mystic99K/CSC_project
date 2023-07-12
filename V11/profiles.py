@@ -3,7 +3,6 @@ import error  # Importing error.py
 import password  # Importing password.py
 import search  # Importing search.py
 
-
 db_exists = False  # Used to check in database exists
 
 
@@ -91,7 +90,7 @@ def select_profile_city():
             return city
 
     else:  # Used to search the entered profile name, if entered profile name is not in database
-        city = search.fuzz_search(prof, row_name)
+        city = search.fuzz_search(prof, row_name, 'select_prof_city')
         print()
 
         if city:
@@ -107,7 +106,8 @@ def option():
         print('1. Add new profile')
         print('2. Remove profile')
         print('3. Edit profile')
-        print('4. Go back to profile selection')
+        print('4. Search profile')
+        print('5. Go back to profile selection')
 
         while True:
             choice_o = input('Enter your choice : ')
@@ -116,7 +116,7 @@ def option():
                 print('Error:Invalid Input,Input contained String')
                 error.error_handle(100)
 
-            elif int(choice_o) not in [1, 2, 3, 4]:  # Checking if input is out of range
+            elif int(choice_o) not in [1, 2, 3, 4, 5]:  # Checking if input is out of range
                 print('Error:Invalid Input')
                 error.error_handle(101)
 
@@ -136,6 +136,9 @@ def option():
             edit_prof()
 
         elif choice_o == 4:
+            search_prof()
+
+        elif choice_o == 5:
             break
 
 
@@ -294,7 +297,8 @@ def select_profile_name():
             return name
 
     else:
-        name = search.fuzz_search(prof_name, row_name)  # __________Error for inputting wrong profile name__________
+        name = search.fuzz_search(prof_name, row_name,
+                                  'select_profile_name')  # __________Error for inputting wrong profile name__________
         print()
 
         if name:
@@ -313,48 +317,63 @@ def select_profile_id(prof_name):
     for row in cursor:  # View the table
         row_name.append(row[1])
 
-    if prof_name in row_name:
-        row_list = []
-        cursor.execute('SELECT * FROM profile')
-        prof_index = row_name.index(prof_name)
+    row_list = []
+    cursor.execute('SELECT * FROM profile')
+    prof_index = row_name.index(prof_name)
 
-        for row in cursor:  # View the table
-            row_list.append(row)
+    for row in cursor:  # View the table
+        row_list.append(row)
 
-        prof_id = row_list[prof_index][0]
-        prof_prot_check = password.pass_prot_check(prof_name)  # ______CHANGE VARIABLES NAME______
+    prof_id = row_list[prof_index][0]
+    prof_prot_check = password.pass_prot_check(prof_name)  # ______CHANGE VARIABLES NAME______
 
-        if prof_prot_check:
-            if password.pass_check(prof_name):
-                print()
-                return prof_id
-
-        else:
+    if prof_prot_check:
+        if password.pass_check(prof_name):
+            print()
             return prof_id
 
     else:
-        name = search.fuzz_search(prof_name, row_name)  # __________Error for inputting wrong profile name__________
-        print()
+        return prof_id
 
-        if name:
-            row_list = []
-            cursor.execute('SELECT * FROM profile')
-            prof_index = row_name.index(prof_name)
 
-            for row in cursor:  # View the table
-                row_list.append(row)
+def search_prof():
+    conn = sqlite3.connect('profile.db')
+    cursor = conn.cursor()
+    name_list = []
 
-            prof_id = row_list[prof_index][0]
-            prof_prot_check = password.pass_prot_check(prof_name)  # ______CHANGE VARIABLES NAME______
+    for row in cursor:  # View the table
+        name_list.append(row[1])
 
-            if prof_prot_check:
-                if password.pass_check(prof_name):
-                    print()
-                    return prof_id
+    while True:
+        print('1. Accurate search')
+        print('2. Non-Accurate search')
+        print('3. Go back')
+
+        while True:
+            choice = input('Enter your choice : ')
+
+            if not choice.isdigit():  # Checking if input has alphabets
+                print('Error:Invalid Input,Input contained String')
+                error.error_handle(100)
+
+            elif int(choice) not in [1, 2, 3]:  # Checking if input is out of range
+                print('Error:Invalid Input')
+                error.error_handle(101)
 
             else:
-                return prof_id
+                choice = int(choice)
+                break
 
-        else:
-            print('Profile was not selected of edition')
-            return False
+        if choice == 3:
+            break
+
+        print()
+        prof_name = input('Enter the name of the profile: ')
+        while True:
+            if prof_name == 'BACK':
+                break
+            search.fuzz_search_prof(prof_name, name_list, choice)
+            prof_name = input('Enter the name of the another profile or enter BACK to go back : ')
+
+
+main_menu()
