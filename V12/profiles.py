@@ -375,5 +375,3 @@ def search_prof():
             search.fuzz_search_prof(prof_name, name_list, choice)
             prof_name = input('Enter the name of the another profile or enter BACK to go back : ')
 
-
-main_menu()
