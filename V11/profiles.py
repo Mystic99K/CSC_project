@@ -3,7 +3,6 @@ import error  # Importing error.py
 import password  # Importing password.py
 import search  # Importing search.py
 
-
 db_exists = False  # Used to check in database exists
 
 
@@ -47,6 +46,7 @@ def main_menu():
 
             elif choice_p == 2:
                 option()
+                break
 
             elif choice_p == 3:
                 return True
@@ -70,11 +70,10 @@ def select_profile_city():
         for row in cursor:  # View the table
             row_list.append(row)
 
-        prof_name = row_list[prof_index][1]
-        prof_prot_check = password.pass_prot_check(prof_name)  # ______CHANGE VARIABLES NAME______
+        prof_prot_check = password.pass_prot_check(prof)  # ______CHANGE VARIABLES NAME______
 
         if prof_prot_check:
-            if password.pass_check(prof_name):
+            if password.pass_check(prof):
                 city = row_list[prof_index][2]
                 print()
                 return city
@@ -94,8 +93,6 @@ def select_profile_city():
             return False
 
 
-
-
 def option():
     print()
     while True:
@@ -111,7 +108,7 @@ def option():
                 print('Error:Invalid Input,Input contained String')
                 error.error_handle(100)
 
-            elif int(choice_o) not in [1,2,3,4]:  # Checking if input is not out of range
+            elif int(choice_o) not in [1, 2, 3, 4]:  # Checking if input is not out of range
                 print('Error:Invalid Input')
                 error.error_handle(101)
 
@@ -207,10 +204,14 @@ def del_prof():
 
 
 def edit_prof():
-    prof = select_profile_name()
-    if not prof:
+    prof_name = select_profile_name()
+
+    if not prof_name:
+        print('Profile was not selected for editing')
         return False
+
     else:
+        prof_id = select_profile_id(prof_name)
         print('1. Edit name')
         print('2. Edit city')
 
@@ -224,23 +225,27 @@ def edit_prof():
             choice = int(choice)
 
         if choice == 1:
-            prof_name = input('Enter new profile : ')
+            prof_new_name = input('Enter new profile : ')
+
             conn = sqlite3.connect('profile.db')
             cursor = conn.cursor()
-
-            edit_prof = f"UPDATE profile SET name = '{prof}' WHERE name = '{prof_name}';"
-            cursor.execute(edit_prof)
+            edit_prof_cmd = f"UPDATE profile SET name = '{prof_new_name}' WHERE id = '{prof_id}';"
+            cursor.execute(edit_prof_cmd)
             conn.commit()
             conn.close()
 
-        elif choice == 2: # fix this
-            pass
+        elif choice == 2:  # fix this
+            prof_new_city = input('Enter new profile : ')
+
+            conn = sqlite3.connect('profile.db')
+            cursor = conn.cursor()
+            edit_prof_cmd = f"UPDATE profile SET name = '{prof_new_city}' WHERE id = '{prof_id}';"
+            cursor.execute(edit_prof_cmd)
+            conn.commit()
+            conn.close()
 
         else:
             print('Error')
-
-
-
 
 
 def select_profile_name():
@@ -280,6 +285,59 @@ def select_profile_name():
 
         if name:
             return name
+
+        else:
+            return False
+
+
+def select_profile_id(prof_name):
+    conn = sqlite3.connect('profile.db')
+    cursor = conn.cursor()
+
+    row_name = []  # Used to append all rows
+    cursor.execute('SELECT * FROM profile')
+    for row in cursor:  # View the table
+        row_name.append(row[1])
+
+    if prof_name in row_name:
+        row_list = []
+        cursor.execute('SELECT * FROM profile')
+        prof_index = row_name.index(prof_name)
+        for row in cursor:  # View the table
+            row_list.append(row)
+
+        prof_id = row_list[prof_index][0]
+        prof_prot_check = password.pass_prot_check(prof_name)  # ______CHANGE VARIABLES NAME______
+
+        if prof_prot_check:
+            if password.pass_check(prof_name):
+                print()
+                return prof_id
+
+        else:
+            return prof_id
+
+    else:
+        name = search.fuzz_search(prof_name, row_name)  # __________Error for inputting wrong profile name__________
+        print()
+
+        if name:
+            row_list = []
+            cursor.execute('SELECT * FROM profile')
+            prof_index = row_name.index(prof_name)
+            for row in cursor:  # View the table
+                row_list.append(row)
+
+            prof_id = row_list[prof_index][0]
+            prof_prot_check = password.pass_prot_check(prof_name)  # ______CHANGE VARIABLES NAME______
+
+            if prof_prot_check:
+                if password.pass_check(prof_name):
+                    print()
+                    return prof_id
+
+            else:
+                return prof_id
 
         else:
             print('Profile was not selected of edition')
