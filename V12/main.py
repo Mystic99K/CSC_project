@@ -2,8 +2,10 @@ import requests
 import colorama
 import profiles  # Importing profiles.py
 import error  # Importing error.py
+import clscreen # Importing clscreen.py
 
-colorama.init()
+colorama.init() # Initializing colorama
+
 # Color definitions
 ################################
 c_black = colorama.Fore.BLACK
@@ -85,14 +87,18 @@ def calling():
 
         print()  # Adding Blank space
         if choice_w == 1:
+            clscreen.cls()
             dis_weather_temp()
             dis_weather_wind()
             dis_weather_vis()
         elif choice_w == 2:
+            clscreen.cls()
             dis_weather_temp()
         elif choice_w == 3:
+            clscreen.cls()
             dis_weather_wind()
         elif choice_w == 4:
+            clscreen.cls()
             dis_weather_vis()
         elif choice_w == 5:  # Breaking while loop
             break
@@ -105,10 +111,13 @@ def calling():
 
 
 while True:
+    clscreen.cls() # Clear screen
+
     back = False
     usr_city = profiles.main_menu()  # Getting name of the city
 
     if usr_city == True:  # Used to end the program
+        clscreen.cls()
         print('Closing Program...')
         break
 
@@ -119,6 +128,7 @@ while True:
             if usr_city == 'BACK':  # Going back to profiles menu
                 break
             weather_data = get_weather_data(usr_city)  # Getting weather data from api by providing city
+            clscreen.cls()
             calling()
             if back:  # Going back to main menu
                 break
@@ -126,6 +136,7 @@ while True:
 
         else:  # Profile other than Guest is selected
             weather_data = get_weather_data(usr_city)  # Getting weather data from api by providing city
+            clscreen.cls()
             calling()
             if back:  # Going back to main menu
                 break
