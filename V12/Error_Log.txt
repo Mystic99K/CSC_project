@@ -81,3 +81,5 @@
 7/12/2023 18:59:32	ERROR:104 - 'Enter profile was not found within database'
 7/12/2023 19:0:32	ERROR:104 - 'Enter profile was not found within database'
 7/12/2023 19:0:39	ERROR:104 - 'Enter profile was not found within database'
+7/13/2023 17:42:32	ERROR:103 - 'Incorrect password entered'
+7/13/2023 17:42:42	ERROR:103 - 'Incorrect password entered'
