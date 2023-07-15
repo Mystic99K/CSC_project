@@ -13,7 +13,7 @@ def fuzz_search(prof_name, name_list):
             check = True
             best_match_l.append(name_1)
 
-    if check:
+    if not check:
         print('Error:No such profile found')
         error.error_handle(104)
         return False
