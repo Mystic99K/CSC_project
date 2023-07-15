@@ -1,4 +1,9 @@
 import sqlite3
+import os
+
+os.remove("Error_Log.txt")
+os.remove("profile.db")
+os.remove("password.enc")
 
 conn = sqlite3.connect('profile.db')
 cursor = conn.cursor()
