@@ -3,6 +3,7 @@ import error  # Importing error.py
 import password  # Importing password.py
 import search  # Importing search.py
 
+
 db_exists = False  # Used to check in database exists
 
 
@@ -41,10 +42,11 @@ def main_menu():
                 print('Error:Invalid Input')
                 error.error_handle(101)
 
-            if choice_p == 1:
-                city = select_profile_city()
+            elif choice_p == 1:
+                prof_data = get_profile_data()
 
-                if city:
+                if prof_data is not None:
+                    city = prof_data[2]
                     return city
                 else:  # User has failed to enter correct password or username OR has chose to go back to main menu
                     break
@@ -54,55 +56,54 @@ def main_menu():
                 break
 
             elif choice_p == 3:  # Closing program
-                return None
+                return True
 
 
-def select_profile_city():
+def get_profile_data():
     conn = sqlite3.connect('profile.db')
     cursor = conn.cursor()
 
-    prof = input('Enter the profile name : ')
+    prof_name = input('Enter the profile name : ')
 
-    row_name = []  # Used to append all usernames from database
+    name_list = []  # Used to append all usernames from database
+    prof_list = []
     cursor.execute('SELECT * FROM profile')
 
     for row in cursor:  # View the table
-        row_name.append(row[1])
+        name_list.append(row[1])
+        prof_list.append(row)
 
-    if prof in row_name:
-        row_list = []
+    if prof_name in name_list:
         cursor.execute('SELECT * FROM profile')
-        prof_index = row_name.index(prof)  # Getting index of the user's data, used for splicing
+        prof_index = name_list.index(prof_name)
 
-        for row in cursor:  # Getting all data from database, this will be then spliced
-            row_list.append(row)
-
-        prof_prot_check = password.pass_prot_check(prof)  # Used to check if the profile is password protected or not
+        prof_prot_check = password.pass_prot_check(prof_name)
 
         if prof_prot_check:
-            if password.pass_check(prof):  # Used to check if the user knows the password of the profile
-                city = row_list[prof_index][2]
+            if password.pass_check(prof_name):
+                data = prof_list[prof_index]
                 print()
-                return city
+                return data
 
         else:  # If the profile has no password protection
-            city = row_list[prof_index][2]
-            return city
+            data = prof_list[prof_index]
+            print()
+            return data
 
     else:  # Used to search the entered profile name, if entered profile name is not in database
-        city = search.fuzz_search(prof, row_name, 'select_prof_city')
+        data = search.fuzz_search(prof_name, name_list, 'select_prof_city')
         print()
 
-        if city:
-            return city
+        if data:
+            return data
 
         else:  # If the user as entered a profile name that is not there within the database
-            return False
+            return None
 
 
 def option():
-    print()
     while True:
+        print()
         print('1. Add new profile')
         print('2. Remove profile')
         print('3. Edit profile')
@@ -159,74 +160,39 @@ def add_prof():
 
 
 def del_prof():
-    while True:
+    prof_data = get_profile_data()
+    if prof_data is not None:
         conn = sqlite3.connect('profile.db')
         cursor = conn.cursor()
-        cursor.execute('SELECT * FROM profile')
-        counter = 0
-        count_l = []
-        row_l = []
 
-        for row in cursor:  # Displaying all profiles
-            counter += 1
-            print(counter, '. ', row[1], sep='')
-            count_l.append(counter)
-            row_l.append(row[0])
+        prof_id = prof_data[0]
+        prof_name = prof_data[1]
 
-        while True:
-            choice_p = input('Enter your choice : ')
-
-            if not choice_p.isdigit():  # Checking if input has no alphabets
-                print('Error:Invalid Input,Input contained String')
-                error.error_handle(100)
-
-            else:
-                choice_p = int(choice_p)
-                break
-
-        in_row = count_l.index(choice_p)
-        q_row = row_l[in_row]
-        q_get_rec = f'SELECT * FROM profile WHERE id IS {q_row}'
-        cursor.execute(q_get_rec)
-
-        for row in cursor:
-            del_usr = row[1]
-
-        pass_prot_ch = password.pass_prot_check(del_usr)
-
-        if pass_prot_ch:
-            prof_del = password.pass_check(del_usr)
-
-            if not prof_del:
-                break
-
-        else:
-            prof_del = True
-
-        q_del_rec = f"DELETE FROM profile WHERE id = {q_row};"
+        q_del_rec = f"DELETE FROM profile WHERE id = {prof_id};"
         cursor.execute(q_del_rec)
         conn.commit()
         conn.close()
-        break
 
-    if prof_del:
-        print(del_usr, '- removed successfully!')
+        print(prof_name,'- removed successfully!')
 
     else:
-        print(del_usr, '- was not removed')
+        print('Profile was not removed')
 
     print()
 
 
 def edit_prof():
-    prof_name = select_profile_name()
+    prof_data = get_profile_data()
 
-    if not prof_name:
+    if not prof_data:
         print('Profile was not selected for editing')
         return False
 
     else:
-        prof_id = select_profile_id(prof_name)
+        conn = sqlite3.connect('profile.db')
+        cursor = conn.cursor()
+
+        prof_id = prof_data[0]
 
         print('1. Edit name')
         print('2. Edit city')
@@ -240,99 +206,21 @@ def edit_prof():
         else:
             choice = int(choice)
 
-        if choice == 1:
-            prof_new_name = input('Enter new profile : ')
+        if choice in [1,2]:
+            if choice == 1:
+                prof_new_name = input('Enter new profile : ')
+                edit_prof_cmd = f"UPDATE profile SET name = '{prof_new_name}' WHERE id = '{prof_id}';"
 
-            conn = sqlite3.connect('profile.db')
-            cursor = conn.cursor()
-            edit_prof_cmd = f"UPDATE profile SET name = '{prof_new_name}' WHERE id = '{prof_id}';"
-            cursor.execute(edit_prof_cmd)
-            conn.commit()
-            conn.close()
+            else:
+                prof_new_city = input('Enter new profile : ')
+                edit_prof_cmd = f"UPDATE profile SET name = '{prof_new_city}' WHERE id = '{prof_id}';"
 
-        elif choice == 2:  # fix this
-            prof_new_city = input('Enter new profile : ')
-
-            conn = sqlite3.connect('profile.db')
-            cursor = conn.cursor()
-            edit_prof_cmd = f"UPDATE profile SET name = '{prof_new_city}' WHERE id = '{prof_id}';"
             cursor.execute(edit_prof_cmd)
             conn.commit()
             conn.close()
 
         else:
-            print('Error')
-
-
-def select_profile_name():
-    conn = sqlite3.connect('profile.db')
-    cursor = conn.cursor()
-
-    prof_name = input('Enter the profile name : ')
-
-    row_name = []  # Used to append all rows
-    cursor.execute('SELECT * FROM profile')
-
-    for row in cursor:  # View the table
-        row_name.append(row[1])
-
-    if prof_name in row_name:
-        row_list = []
-        cursor.execute('SELECT * FROM profile')
-        prof_index = row_name.index(prof_name)
-
-        for row in cursor:  # View the table
-            row_list.append(row)
-
-        prof_prot_check = password.pass_prot_check(prof_name)  # ______CHANGE VARIABLES NAME______
-
-        if prof_prot_check:
-            if password.pass_check(prof_name):
-                name = row_list[prof_index][1]
-                print()
-                return name
-
-        else:
-            name = row_list[prof_index][1]
-            return name
-
-    else:
-        name = search.fuzz_search(prof_name, row_name, 'select_profile_name')  # __________Error for inputting wrong profile name__________
-        print()
-
-        if name:
-            return name
-
-        else:
-            return False
-
-
-def select_profile_id(prof_name):
-    conn = sqlite3.connect('profile.db')
-    cursor = conn.cursor()
-    row_name = []  # Used to append all rows
-    cursor.execute('SELECT * FROM profile')
-
-    for row in cursor:  # View the table
-        row_name.append(row[1])
-
-    row_list = []
-    cursor.execute('SELECT * FROM profile')
-    prof_index = row_name.index(prof_name)
-
-    for row in cursor:  # View the table
-        row_list.append(row)
-
-    prof_id = row_list[prof_index][0]
-    prof_prot_check = password.pass_prot_check(prof_name)  # ______CHANGE VARIABLES NAME______
-
-    if prof_prot_check:
-        if password.pass_check(prof_name):
-            print()
-            return prof_id
-
-    else:
-        return prof_id
+            print('Error:Invalid Input')
 
 
 def search_prof():
@@ -367,7 +255,9 @@ def search_prof():
             break
 
         print()
+
         prof_name = input('Enter the name of the profile: ')
+
         while True:
             if prof_name == 'BACK':
                 break
