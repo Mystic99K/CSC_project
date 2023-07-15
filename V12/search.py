@@ -38,7 +38,7 @@ def fuzz_search(prof_name, name_list, location):
         return False
 
 
-def fuzz_search_prof(name, name_list, search_type):
+def prof_fuzz_search(name, name_list, search_type):
     while True:
         if search_type == 1:
             check = False

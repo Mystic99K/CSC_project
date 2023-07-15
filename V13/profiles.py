@@ -91,7 +91,7 @@ def get_profile_data():
             return data
 
     else:  # Used to search the entered profile name, if entered profile name is not in database
-        data = search.fuzz_search(prof_name, name_list, 'select_prof_city')
+        data = search.fuzz_search(prof_name, name_list)
         print()
 
         if data:
@@ -261,5 +261,5 @@ def search_prof():
         while True:
             if prof_name == 'BACK':
                 break
-            search.fuzz_search_prof(prof_name, name_list, choice)
+            search.prof_fuzz_search(prof_name, name_list, choice)
             prof_name = input('Enter the name of the another profile or enter BACK to go back : ')
