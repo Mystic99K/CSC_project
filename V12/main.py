@@ -2,7 +2,7 @@ import requests
 import colorama
 import profiles  # Importing profiles.py
 import error  # Importing error.py
-import clscreen # Importing clscreen.py
+import clscreen  # Importing clscreen.py
 
 colorama.init() # Initializing colorama
 

@@ -1,7 +1,7 @@
 import requests
 import colorama
-import error
-
+import error  # Importing error.py
+import clscreen  # Importing clscreen.py
 
 colorama.init()
 # Color definitions
@@ -54,7 +54,7 @@ def display_weather_data(weather_data):
 
         print()  # Adding Blank space
         if choice_w == 1:
-            print()
+            clscreen.cls()
             dis_weather_temp(weather_data)
             print()
             dis_weather_wind(weather_data)
@@ -62,15 +62,15 @@ def display_weather_data(weather_data):
             dis_weather_vis(weather_data)
 
         elif choice_w == 2:
-            print()
+            clscreen.cls()
             dis_weather_temp(weather_data)
 
         elif choice_w == 3:
-            print()
+            clscreen.cls()
             dis_weather_wind(weather_data)
 
         elif choice_w == 4:
-            print()
+            clscreen.cls()
             dis_weather_vis(weather_data)
 
         elif choice_w == 5:  # Breaking while loop
