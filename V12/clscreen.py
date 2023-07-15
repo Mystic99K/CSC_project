@@ -2,7 +2,7 @@ import os
 
 
 def cls():
-    if os.name == 'nt': # for windows
+    if os.name == 'nt':  # Windows
         os.system('cls')
     else:
-        os.system('clear') # for unix based shells, like Linux or macOS
+        os.system('clear')  # Unix based shells
