@@ -1,6 +1,7 @@
 from fuzzywuzzy import fuzz
 import error  # Importing error.py
-
+import time
+from timer import countdown
 
 def fuzz_search(prof_name, name_list):
     check = False
@@ -14,8 +15,9 @@ def fuzz_search(prof_name, name_list):
             best_match_l.append(name_1)
 
     if not check:
-        print('Error:No such profile found')
+        print('Error: No such profile found')
         error.error_handle(104)
+        countdown("Going back in", 5)
         return False
 
     print('Did you mean :', end=' ')

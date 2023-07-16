@@ -25,7 +25,7 @@ def main_menu():
 
         conn.commit()  # Commit the changes to the database
 
-        #cls()
+        cls()
 
         print('1. Login')
         print('2. Options')
