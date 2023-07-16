@@ -1,7 +1,7 @@
 from fuzzywuzzy import fuzz
 import error  # Importing error.py
 import time
-from timer import countdown
+from timings import countdown
 
 def fuzz_search(prof_name, name_list):
     check = False
