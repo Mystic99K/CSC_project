@@ -17,7 +17,7 @@ def fuzz_search(prof_name, name_list):
     if not check:
         print('Error: No such profile found')
         error.error_handle(104)
-        countdown("Going back in", 5)
+        countdown("Going back in", 3)
         return False
 
     print('Did you mean :', end=' ')

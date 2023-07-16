@@ -2,20 +2,8 @@ import profiles  # Importing profiles.py
 import weather_report  # Importing weather_report.py
 from clscreen import cls # Importing clscreen.py
 
-from rich.console import Console # styling directly in print statements
-from rich.theme import Theme
+import colors
 
-# Defining custom themes using dictionary
-custom_themes = Theme(
-    {
-        "general": "blue", 
-        "error": "red bold",
-        "success": "green bold",
-        "title": "#FF8000"
-    }
-)
-# Setting print console from rich
-console = Console(color_system="256", theme=custom_themes)
 
 API_KEY = "5c443b217be241e6b75175940230507"  # trq main acc
 
@@ -29,7 +17,7 @@ while True:
 
         cls()
 
-        console.print('---Closing Program---', style='error', justify='center')
+        colors.console.print('---Closing Program---', style='error', justify='center')
         break
 
     while True:
