@@ -9,12 +9,13 @@ from rich.theme import Theme
 custom_themes = Theme(
     {
         "general": "blue", 
-        "error": "red", 
-        "success": "green"
+        "error": "red bold",
+        "success": "green bold",
+        "title": "#FF8000"
     }
 )
 # Setting print console from rich
-console = Console(theme=custom_themes)
+console = Console(color_system="256", theme=custom_themes)
 
 API_KEY = "5c443b217be241e6b75175940230507"  # trq main acc
 
