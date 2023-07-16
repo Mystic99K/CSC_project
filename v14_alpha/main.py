@@ -1,6 +1,6 @@
 import profiles  # Importing profiles.py
 import weather_report  # Importing weather_report.py
-import clscreen  # Importing clscreen.py
+from clscreen import cls # Importing clscreen.py
 
 from rich.console import Console # styling directly in print statements
 from rich.theme import Theme
@@ -21,14 +21,13 @@ API_KEY = "5c443b217be241e6b75175940230507"  # trq main acc
 
 
 while True:
-    clscreen.cls()
 
     back = False
     city = profiles.main_menu()  # Getting name of the city
 
     if city == True:  # Used to end the program
 
-        clscreen.cls()
+        cls()
 
         console.print('---Closing Program---', style='error', justify='center')
         break
@@ -44,7 +43,7 @@ while True:
             weather_data = weather_report.get_weather_data(city, API_KEY)  # Getting weather data from api by providing city
             weather_report.display_weather_data(weather_data)
 
-            clscreen.cls()
+            cls()
 
             if back:  # Going back to main menu
                 break
@@ -54,7 +53,7 @@ while True:
             weather_data = weather_report.get_weather_data(city, API_KEY)  # Getting weather data from api by providing city
             weather_report.display_weather_data(weather_data)
 
-            clscreen.cls()
+            cls()
 
             if back:  # Going back to main menu
                 break

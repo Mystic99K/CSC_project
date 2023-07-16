@@ -2,7 +2,8 @@ import sqlite3
 import error  # Importing error.py
 import password  # Importing password.py
 import search  # Importing search.py
-
+from clscreen import cls # Importing clscreen.py
+import os
 
 db_exists = False  # Used to check in database exists
 
@@ -23,6 +24,8 @@ def main_menu():
             db_exists = True  # Program will not try to create the table again
 
         conn.commit()  # Commit the changes to the database
+
+        #cls()
 
         print('1. Login')
         print('2. Options')
@@ -62,6 +65,8 @@ def main_menu():
 def get_profile_data():
     conn = sqlite3.connect('profile.db')
     cursor = conn.cursor()
+
+    cls()
 
     prof_name = input('Enter the profile name : ')
 
@@ -103,6 +108,9 @@ def get_profile_data():
 
 def option():
     while True:
+
+        cls()
+
         print()
         print('1. Add new profile')
         print('2. Remove profile')
@@ -146,6 +154,8 @@ def option():
 def add_prof():
     conn = sqlite3.connect('profile.db')
     cursor = conn.cursor()
+
+    cls()
 
     prof_name = input('Enter name of the profile : ')
     prof_city = input('Enter name of the city : ')
@@ -231,12 +241,17 @@ def search_prof():
     for row in cursor:  # View the table
         name_list.append(row[1])
 
+    cls()
+
     while True:
         print('1. Accurate search')
         print('2. Non-Accurate search')
         print('3. Go back')
 
         while True:
+
+            cls()
+
             choice = input('Enter your choice : ')
 
             if not choice.isdigit():  # Checking if input has alphabets
@@ -255,6 +270,8 @@ def search_prof():
             break
 
         print()
+
+        cls()
 
         prof_name = input('Enter the name of the profile: ')
 
