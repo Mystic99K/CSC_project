@@ -1,40 +1,16 @@
 import base64
+from profile_data import get_profile_data
 
 
-def encrypt_file(data):
-    data.extend(decrypt_file())
-    pass_w = ''
-    for word in data:
-        pass_w += word
-    pass_byte = bytes(pass_w, "utf-8")
+def encrypt_pass(prof_pass):
+    pass_byte = bytes(prof_pass, "utf-8")
     encrypted_data = base64.b64encode(pass_byte)
 
-    with open('password.enc', "wb") as file:
-        file.write(encrypted_data)
+    return encrypted_data
 
 
-def decrypt_file():
-    try:
-        with open('password.enc', "rb") as file:
-            encrypted_data = file.read()
-    except:
-        with open('password.enc', "wb") as _:
-            pass
-        with open('password.enc', "rb") as file:
-            encrypted_data = file.read()
-
-    decrypted_data = base64.b64decode(encrypted_data)
-    dec_nf_l_ns = str(decrypted_data)[:-1]
-    dec_nf_l = dec_nf_l_ns.split('-')
-    dec_l = []
-
-    for i in range(len(dec_nf_l)):
-        if i == 0:
-            dec_l.append(dec_nf_l[i][2:])
-        else:
-            dec_l.append(dec_nf_l[i])
-
-    if dec_l[-1] == '\'"':
-        dec_l.pop(-1)
-
-    return dec_l
+def decrypt_pass(name):
+    prof_data = get_profile_data(name)
+    prof_enc_pass = prof_data[4]
+    decrypted_data = base64.b64decode(prof_enc_pass)
+    return decrypted_data

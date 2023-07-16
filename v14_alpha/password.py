@@ -30,13 +30,12 @@ def pass_create(name):
                 break
 
             else:
-                pass_prot = 0
-                return pass_prot
+                return None
 
-    pass_code = prof_pass_1
-    pass_l = [name + ' ' + pass_code + '-']
-    encrypt.encrypt_file(pass_l)
-    return pass_prot
+    prof_pass = prof_pass_1
+    enc_prof_pass = encrypt.encrypt_pass(prof_pass)
+
+    return enc_prof_pass
 
 
 def pass_check(name):
@@ -45,25 +44,14 @@ def pass_check(name):
         pass_code = getpass.getpass("Enter profile's password or CANCEL to cancel : ")
         if pass_code == 'CANCEL':
             return check
-        dec_pass_l = encrypt.decrypt_file()
 
-        for line in dec_pass_l:
-            if line.split()[0] == name and line.split()[1] == pass_code:
-                check = True
-                return check
+        dec_pass = encrypt.decrypt_pass(name)
 
-        if not check:
+        if dec_pass == pass_code:
+            check = True
+            return check
+
+        else:
             print('Error:Incorrect password entered')
             error.error_handle(103)
 
-
-def pass_prot_check(name):
-    conn = sqlite3.connect('profile.db')
-    cursor = conn.cursor()
-    cursor.execute('SELECT * FROM profile')
-    pass_prot_ch = False
-    for row in cursor:  # Going through all profiles
-        if row[1] == name and row[3] == 1:
-            pass_prot_ch = True
-
-    return pass_prot_ch

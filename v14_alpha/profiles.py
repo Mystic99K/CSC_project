@@ -2,8 +2,10 @@ import sqlite3
 import error  # Importing error.py
 import password  # Importing password.py
 import search  # Importing search.py
-from clscreen import cls # Importing clscreen.py
+from clscreen import cls  # Importing clscreen.py
 import os
+from timings import countdown
+from profile_data import get_profile_data
 
 db_exists = False  # Used to check in database exists
 
@@ -62,50 +64,6 @@ def main_menu():
                 return True
 
 
-def get_profile_data():
-    conn = sqlite3.connect('profile.db')
-    cursor = conn.cursor()
-
-    cls()
-
-    prof_name = input('Enter the profile name : ')
-
-    name_list = []  # Used to append all usernames from database
-    prof_list = []
-    cursor.execute('SELECT * FROM profile')
-
-    for row in cursor:  # View the table
-        name_list.append(row[1])
-        prof_list.append(row)
-
-    if prof_name in name_list:
-        cursor.execute('SELECT * FROM profile')
-        prof_index = name_list.index(prof_name)
-
-        prof_prot_check = password.pass_prot_check(prof_name)
-
-        if prof_prot_check:
-            if password.pass_check(prof_name):
-                data = prof_list[prof_index]
-                print()
-                return data
-
-        else:  # If the profile has no password protection
-            data = prof_list[prof_index]
-            print()
-            return data
-
-    else:  # Used to search the entered profile name, if entered profile name is not in database
-        data = search.fuzz_search(prof_name, name_list)
-        print()
-
-        if data:
-            return data
-
-        else:  # If the user as entered a profile name that is not there within the database
-            return None
-
-
 def option():
     while True:
 
@@ -159,13 +117,18 @@ def add_prof():
 
     prof_name = input('Enter name of the profile : ')
     prof_city = input('Enter name of the city : ')
-    pass_prot = password.pass_create(prof_name)
-    q_add_rec = f"INSERT INTO profile (name,city,pass_prot) VALUES ('{prof_name}','{prof_city}',{pass_prot});"
+    prof_pass = password.pass_create(prof_name)
+    if prof_pass is not None:
+        q_add_rec = f'''INSERT INTO profile (name,city,pass_prot,password) VALUES ('{prof_name}','{prof_city}',1,"{prof_pass}");'''
+        print(q_add_rec)
+    else:
+        q_add_rec = f"INSERT INTO profile (name,city,pass_prot) VALUES ('{prof_name}','{prof_city}',0);"
     cursor.execute(q_add_rec)
     conn.commit()
     conn.close()
 
     print(prof_name, '- Added successfully')
+    countdown("Going back in", 3)
     print()
 
 
@@ -183,7 +146,7 @@ def del_prof():
         conn.commit()
         conn.close()
 
-        print(prof_name,'- removed successfully!')
+        print(prof_name, '- removed successfully!')
 
     else:
         print('Profile was not removed')
@@ -216,7 +179,7 @@ def edit_prof():
         else:
             choice = int(choice)
 
-        if choice in [1,2]:
+        if choice in [1, 2]:
             if choice == 1:
                 prof_new_name = input('Enter new profile : ')
                 edit_prof_cmd = f"UPDATE profile SET name = '{prof_new_name}' WHERE id = '{prof_id}';"

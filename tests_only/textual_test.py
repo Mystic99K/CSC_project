@@ -1,51 +1,51 @@
-import time
-from textual.app import App
+import pytermgui as ptg
 
-# Define Timer class
-class TimerError(Exception):
-    """A custom exception used to report errors in use of Timer class"""
+CONFIG = """
+config:
+    InputField:
+        styles:
+            prompt: dim italic
+            cursor: '@72'
+    Label:
+        styles:
+            value: dim bold
 
-class Timer:
-    def __init__(self):
-        self._start_time = None
+    Window:
+        styles:
+            border: '60'
+            corner: '60'
 
-    def start(self):
-        """Start a new timer"""
-        if self._start_time is not None:
-            raise TimerError(f"Timer is running. Use .stop() to stop it")
+    Container:
+        styles:
+            border: '96'
+            corner: '96'
+"""
 
-        self._start_time = time.perf_counter()
+with ptg.YamlLoader() as loader:
+    loader.load(CONFIG)
 
-    def stop(self):
-        """Stop the timer, and report the elapsed time"""
-        if self._start_time is None:
-            raise TimerError(f"Timer is not running. Use .start() to start it")
+with ptg.WindowManager() as manager:
+    window = (
+        ptg.Window(
+            "",
+            ptg.InputField("Balazs", prompt="Name: "),
+            ptg.InputField("Some street", prompt="Address: "),
+            ptg.InputField("+11 0 123 456", prompt="Phone number: "),
+            "",
+            ptg.Container(
+                "Additional notes:",
+                ptg.InputField(
+                    "A whole bunch of\nMeaningful notes\nand stuff", multiline=True
+                ),
+                box="EMPTY_VERTICAL",
+            ),
+            "",
+            ["Submit", lambda *_: submit(manager, window)],
+            width=60,
+            box="DOUBLE",
+        )
+        .set_title("[210 bold]New contact")
+        .center()
+    )
 
-        elapsed_time = time.perf_counter() - self._start_time
-        self._start_time = None
-        return elapsed_time
-
-# Define TimerApp
-class TimerApp(App):
-    view = None
-
-    async def on_mount(self, event):
-        await self.view.dock(header="Press 's' to start timer, 't' to stop timer")
-
-    async def on_key(self, event):
-        if event.key == "s":
-            self.timer.start()
-        elif event.key == "t":
-            elapsed_time = self.timer.stop()
-            await self.print(f"Elapsed time: {elapsed_time:0.4f} seconds")
-
-    def __init__(self):
-        super().__init__()
-        self.timer = Timer()
-        self.view = self.create_view()
-
-
-
-# Run the app
-app = TimerApp()
-app.run()
+    manager.add(window)

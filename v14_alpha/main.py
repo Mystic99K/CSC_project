@@ -1,6 +1,6 @@
 import profiles  # Importing profiles.py
 import weather_report  # Importing weather_report.py
-from clscreen import cls # Importing clscreen.py
+from clscreen import cls  # Importing clscreen.py
 
 import colors
 
@@ -35,7 +35,7 @@ while True:
 
             if back:  # Going back to main menu
                 break
-            city = 'Null'  # Used to ensure no error
+            city = None  # Used to ensure no error
 
         else:  # Profile other than Guest is selected
             weather_data = weather_report.get_weather_data(city, API_KEY)  # Getting weather data from api by providing city
@@ -45,4 +45,4 @@ while True:
 
             if back:  # Going back to main menu
                 break
-            city = 'Null'  # User selected to enter another city
+            city = None  # User selected to enter another city
