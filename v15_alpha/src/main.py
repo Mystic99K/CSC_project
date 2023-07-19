@@ -8,7 +8,7 @@ from options import options
 
 def __main__():
     db_exists = False
-    conn = sqlite3.connect('./db/profile.db')
+    conn = sqlite3.connect('../db/profile.db')
     cursor = conn.cursor()
 
     crypt_cipher = crypt.Fernet(PASSWRD_ENCRYPTION_KEY)
