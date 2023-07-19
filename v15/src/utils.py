@@ -31,7 +31,7 @@ def cls():
 
 
 def error_handle(error_code):
-    error_desc = open('./errors/errors.txt', 'r')  # Opening existing list of errors
+    error_desc = open('../errors/errors.txt', 'r')  # Opening existing list of errors
 
     EL = error_desc.readlines()
     for EC in EL:
@@ -44,7 +44,7 @@ def error_handle(error_code):
     error_desc.close()
 
     # Error logging part
-    log_file = open('./errors/error_log.txt', 'a')  # Opening existing log file
+    log_file = open('../errors/error_log.txt', 'a')  # Opening existing log file
 
     C_Time = time.localtime()[::]  # Getting Current time
 
