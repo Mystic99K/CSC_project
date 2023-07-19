@@ -5,6 +5,7 @@ from utils import *
 from login import login
 from show_weather import show_weather
 from options import options
+from richcolor import *
 
 def __main__():
     db_exists = False
@@ -28,18 +29,22 @@ def __main__():
 
         conn.commit()  # Commit the changes to the database
 
-
-        menu = "\n=========================MAIN MENU=========================\n"
+        fpanel = Text(justify="center")
+        fpanel.append("Main Menu", style="bold blue")
+        fpanel.append(" - ")
+        print(selected_prof['name'])
         if selected_prof:
-            menu += f"""[Currently logged in as '{selected_prof["name"]}']\n"""
+            fpanel.append(f"Logged in as ", style="italic red")
+            print(Panel(fpanel))
         else:
-            menu += f"""[Currently logged in as Guest]\n"""
-        menu += "1. Login\n"
-        menu += "2. Show weather\n"
-        menu += "3. Options\n"
-        menu += "4. Exit program\n"
+            fpanel.append("Logged in as Guest", style="italic red")
+            print(Panel(fpanel))
 
-        print(menu)
+        print("1. Login")
+        print("2. Show weather")
+        print("3. Options")
+        print("4. Exit program")
+
         usr_choice = input('Enter your choice: ')
 
 
