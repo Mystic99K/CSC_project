@@ -1,6 +1,8 @@
 import os
-import time
+from datetime import date
+from datetime import datetime
 import colorama
+
 
 # START: Utility Constants
 colorama.init()
@@ -15,7 +17,7 @@ c_white = colorama.Fore.WHITE
 c_reset = colorama.Fore.RESET
 
 API_KEY = "5c443b217be241e6b75175940230507"  # trq main acc
-PASSWRD_ENCRYPTION_KEY = b'Nk7_kbeQ1IQ4RVTV42dXS3fH37YahBCacZ9XpgKZyhQ='
+PASSWRD_ENCRYPTION_KEY = b'Nk7_kbeQ1IQ4RVTV42dXS3fH37YahBCacZ9XpgKZyhQ=' # aes enc key
 # END: Utility Constants
 
 
@@ -31,7 +33,7 @@ def cls():
 
 
 def error_handle(error_code):
-    error_desc = open('./errors/errors.txt', 'r')  # Opening existing list of errors
+    error_desc = open('../errors/errors.txt', 'r')  # Opening existing list of errors
 
     EL = error_desc.readlines()
     for EC in EL:
@@ -44,12 +46,15 @@ def error_handle(error_code):
     error_desc.close()
 
     # Error logging part
-    log_file = open('./errors/error_log.txt', 'a')  # Opening existing log file
+    log_file = open('../errors/error_log.txt', 'a')  # Opening existing log file
 
     today = date.today() # getting the current days date
-    current_date = today.strftime("%d/%m/%Y")  # Formatting as dd/mm/YYYY
+    timern = datetime.now()
 
-    log_write = f"{current_date} ERROR:{error_code} - {ED}" # Formatting Error Log
+    current_date = today.strftime("%d/%m/%Y")  # Formatting as dd/mm/YYYY
+    current_time = timern.strftime("%H:%M:%S") # Formatting as H:M:S
+
+    log_write = f"{current_date} {current_time} ERROR:{error_code} - {ED}" # Formatting Error Log
 
     log_line = ''
 
