@@ -1,5 +1,6 @@
 import os
-import time
+from datetime import date
+from datetime import datetime
 import colorama
 
 # START: Utility Constants
@@ -46,10 +47,14 @@ def error_handle(error_code):
     # Error logging part
     log_file = open('../errors/error_log.txt', 'a')  # Opening existing log file
 
-    C_Time = time.localtime()[::]  # Getting Current time
+    today = date.today() # getting the current days date
+    timern = datetime.now() # getting the current time
 
-    log_write = C_Time[1], '/', C_Time[2], '/', C_Time[0], ' ', C_Time[3], ':', C_Time[4], ':', C_Time[
-        5], '\t', 'ERROR:', error_code, ' ', '-', ' ', ED  # Formatting Error Log
+    current_date = today.strftime("%d/%m/%Y")  # Formatting as dd/mm/YYYY
+    current_time = timern.strftime("%H:%M:%S") # Formatting as H:M:S
+
+    log_write = f"{current_date} {current_time} ERROR:{error_code} - {ED}" # Formatting Error Log
+    
     log_line = ''
 
     for log_word in log_write:  # converting tuple to string without changing format
