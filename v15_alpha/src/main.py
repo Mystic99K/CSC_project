@@ -6,14 +6,9 @@ from login import login
 from show_weather import show_weather
 from options import options
 
-from rich.console import Console
-rconsole = Console(color_system="windows") # This color system works in even legacy terminal
-
-#_____________________________________________________________________________________________#
-
 def __main__():
     db_exists = False
-    conn = sqlite3.connect('../db/profile.db')
+    conn = sqlite3.connect('./db/profile.db')
     cursor = conn.cursor()
 
     crypt_cipher = crypt.Fernet(PASSWRD_ENCRYPTION_KEY)
