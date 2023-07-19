@@ -11,7 +11,9 @@ def options(conn, cursor, crypt_cipher, selected_prof):
         option_menu += "1. Create new profile\n"
         option_menu += "2. Delete your profile\n"
         option_menu += "3. Edit your profile\n"
-        option_menu += "4. Exit options menu\n"
+        option_menu += "4. Search your profile (not yet)\n"
+        option_menu += "5. Display all saved profiles (not yet)\n"
+        option_menu += "6. Exit options menu\n"
 
         print(option_menu)
         choice_o = input("Enter your choice: ")
