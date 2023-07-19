@@ -1,0 +1,11 @@
+done:
+main
+profile
+search
+
+todo:
+encrypt
+clscreen
+error
+weather_report
+password

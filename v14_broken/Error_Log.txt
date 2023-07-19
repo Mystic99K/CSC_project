@@ -1,0 +1,6 @@
+7/19/2023 5:10:21	ERROR:104 - 'Enter profile was not found within database'
+7/19/2023 8:37:13	ERROR:104 - 'Enter profile was not found within database'
+7/19/2023 8:38:15	ERROR:100 - 'Invalid Input,Input contained String'
+7/19/2023 8:38:17	ERROR:100 - 'Invalid Input,Input contained String'
+7/19/2023 8:38:19	ERROR:100 - 'Invalid Input,Input contained String'
+7/19/2023 8:38:21	ERROR:100 - 'Invalid Input,Input contained String'

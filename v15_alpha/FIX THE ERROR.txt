@@ -1,0 +1,62 @@
+
+
+1. Login
+2. Options
+3. Exit
+Enter your choice : shasha
+Error:Invalid Input,Input contained String
+Closing Program...
+
+
+##################################################################################################################################
+
+
+1. Show all Weather report
+2. Temperature
+3. Wind
+4. Visibility
+5. Enter a different city
+6. Change profiles
+Enter your choice : 6
+
+1. Login
+2. Options
+3. Exit
+Enter your choice : 
+
+
+
+
+########################################################################################################################################################################
+
+
+
+1. Add new profile
+2. Remove profile
+3. Edit profile
+4. Search profile
+5. Go back to profile selection
+Enter your choice : 2
+
+1. Guest
+2. Shashank
+3. Tariq
+4. trqthe2nd
+Enter your choice : 5
+Traceback (most recent call last):
+  File "C:\Shashank\CSC Project\CSC project\V11\profiles.py", line 373, in <module>
+    main_menu()
+  File "C:\Shashank\CSC Project\CSC project\V11\profiles.py", line 53, in main_menu
+    option()
+  File "C:\Shashank\CSC Project\CSC project\V11\profiles.py", line 133, in option
+    del_prof()
+  File "C:\Shashank\CSC Project\CSC project\V11\profiles.py", line 187, in del_prof
+    in_row = count_l.index(choice_p)
+             ^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: 5 is not in list
+
+Process finished with exit code 1
+
+
+
+
