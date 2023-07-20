@@ -6,22 +6,19 @@ import utils # for changing state of utils.loggedin
 
 def login(cursor, crypt_cipher, selected_prof):
     while True:
-        # Get profile id and if exist in the database
-        in_prof_id = input('Enter the profile id: ')
-
+        # Get profile name and if exist in the database
+        in_prof_name = input('Enter the profile name: ')
 
         try:
-            cursor.execute(
-                """SELECT * FROM profile WHERE id = ?;""",
-                (in_prof_id)
-            )
+            cursor.execute(f"""SELECT * FROM profile WHERE name = '{in_prof_name}';""")
         except sqlite3.Error as err:
             print(f"""Error: SQL command execution failed "{err}".""")
 
 
         matched_prof = parse_prof(cursor.description, cursor.fetchone())
+        
         if matched_prof is None:
-            print('Error: No such profile found, re-enter the id.')
+            print('Error: No such profile found, re-enter the name.')
             error_handle(103)
             continue
                 
