@@ -25,11 +25,10 @@ def login(cursor, crypt_cipher, selected_prof):
             continue
                 
         in_prof_password = getpass.getpass("Enter the profile's password: ")
-        dnc_password_hash = crypt_cipher.decrypt( 
-            matched_prof["password_hash"]
-        ).decode()
+        dnc_password_hash = crypt_cipher.decrypt(matched_prof["password_hash"]).decode()
         if in_prof_password == dnc_password_hash:
             input(f"""Success: You are logged in as '{matched_prof["name"]}' (ENTER): """)
+            loggedin = True
             for key in matched_prof.keys():
                 selected_prof[key] = matched_prof[key]
             break

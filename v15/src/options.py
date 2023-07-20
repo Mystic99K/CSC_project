@@ -40,9 +40,9 @@ def options(conn, cursor, crypt_cipher, selected_prof):
                 print(f"""Success: Profile '{prof["name"]}' has been successfully added. Your profile id is '{cursor.lastrowid}'.""")
             input("Enter to go back: ")
         elif choice_o == "2":
-            if selected_prof is None:
+            if loggedin == False:
                 input("You haven't yet logged in (ENTER): ")
-                continue
+                break
             
             if input("Warning: You are about to delete your account. Press type 'y' to continue or press enter to stop: "):
                 try:
@@ -59,9 +59,9 @@ def options(conn, cursor, crypt_cipher, selected_prof):
             else:
                 pass
         elif choice_o == "3":
-            if selected_prof is None:
+            if loggedin == False:
                 input("You haven't yet logged in (ENTER): ")
-                continue
+                break
             
             in_prof_name = input(f"""Enter new profile name ({selected_prof["name"]}): """)
             if in_prof_name is None:
@@ -82,7 +82,7 @@ def options(conn, cursor, crypt_cipher, selected_prof):
             else:
                 print(f"""Success: Profile '{selected_prof["name"]}' has been successfully updated.""")
             input("Enter to go back: ")
-        elif choice_o == "4":
+        elif choice_o == "6":
             break
         else:
             input("Error: Invalid input (ENTER): ")

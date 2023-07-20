@@ -3,6 +3,8 @@ from datetime import date
 from datetime import datetime
 import colorama
 
+loggedin = False
+
 # START: Utility Constants
 colorama.init()
 c_black = colorama.Fore.BLACK
