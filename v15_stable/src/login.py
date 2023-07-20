@@ -2,6 +2,7 @@ import sqlite3
 import getpass
 
 from utils import *
+import utils # for changing state of utils.loggedin
 
 def login(cursor, crypt_cipher, selected_prof):
     while True:
@@ -28,7 +29,7 @@ def login(cursor, crypt_cipher, selected_prof):
         dnc_password_hash = crypt_cipher.decrypt(matched_prof["password_hash"]).decode()
         if in_prof_password == dnc_password_hash:
             input(f"""Success: You are logged in as '{matched_prof["name"]}' (ENTER): """)
-            loggedin = True
+            utils.loggedin = True
             for key in matched_prof.keys():
                 selected_prof[key] = matched_prof[key]
             break

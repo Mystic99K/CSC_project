@@ -1,7 +1,7 @@
 import sqlite3
 import getpass
-
 from utils import *
+import utils # for using utils.loggedin
 
 def options(conn, cursor, crypt_cipher, selected_prof):
     while True:
@@ -40,9 +40,9 @@ def options(conn, cursor, crypt_cipher, selected_prof):
                 print(f"""Success: Profile '{prof["name"]}' has been successfully added. Your profile id is '{cursor.lastrowid}'.""")
             input("Enter to go back: ")
         elif choice_o == "2":
-            if loggedin == False:
+            if not utils.loggedin:
                 input("You haven't yet logged in (ENTER): ")
-                break
+                continue
             
             if input("Warning: You are about to delete your account. Press type 'y' to continue or press enter to stop: "):
                 try:
@@ -59,9 +59,9 @@ def options(conn, cursor, crypt_cipher, selected_prof):
             else:
                 pass
         elif choice_o == "3":
-            if loggedin == False:
+            if not utils.loggedin:
                 input("You haven't yet logged in (ENTER): ")
-                break
+                continue
             
             in_prof_name = input(f"""Enter new profile name ({selected_prof["name"]}): """)
             if in_prof_name is None:
