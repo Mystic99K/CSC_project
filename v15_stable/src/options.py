@@ -37,7 +37,7 @@ def options(conn, cursor, crypt_cipher, selected_prof):
             except sqlite3.Error as err:
                 print(f"""Error: SQL command execution failed "{err}".""")
             else:
-                print(f"""Success: Profile '{prof["name"]}' has been successfully added. Your profile id is '{cursor.lastrowid}'.""")
+                print(f"""Success: Profile '{prof["name"]}' has been successfully added.""")
             input("Enter to go back: ")
         elif choice_o == "2":
             if not utils.loggedin:
