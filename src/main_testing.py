@@ -26,26 +26,12 @@ console.print(
 )
 choice = Prompt.ask("Enter your option", style=f"{tex_color}")
 
-<<<<<<< HEAD
 print(choice, type(choice))
 
-=======
->>>>>>> 32804f3a68f4706416050a50b986d6da6151a39e
 # err_console.print( 
 #     Panel(
 #         menu,
 #         title="MAIN MENU", 
-#         subtitle="",
-#         style=f"{tex_color}"
+#         subtitle=""
 #     )
 # )
-
-err_console.print( 
-    Panel(
-        "Press enter to continue",
-        title="MAIN MENU", 
-        subtitle=""
-        ),
-)
-
-input("")
