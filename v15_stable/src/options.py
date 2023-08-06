@@ -2,6 +2,7 @@ import sqlite3
 import getpass
 from utils import *
 import utils # for using utils.loggedin
+from login import parse_prof
 
 def options(conn, cursor, crypt_cipher, selected_prof):
     while True:
@@ -81,6 +82,16 @@ def options(conn, cursor, crypt_cipher, selected_prof):
                 print(f"""Error: SQL command execution failed "{err}".""")
             else:
                 print(f"""Success: Profile '{selected_prof["name"]}' has been successfully updated.""")
+            input("Enter to go back: ")
+            
+        elif choice_o == "5":
+            try:
+                cursor.execute(f"""SELECT * FROM profile""")
+            except sqlite3.Error as err:
+                print(f"""Error: SQL command execution failed "{err}".""")
+            print(cursor.description)
+            all_profs = parse_prof(cursor.description, cursor.fetchone())
+            print(all_profs)
             input("Enter to go back: ")
         elif choice_o == "6":
             break
