@@ -3,6 +3,7 @@ from rich.console import Console
 from rich.text import Text
 
 console = Console()
+err_console = Console(stderr=True, style="bold red")
 
 tex_color = "#58ACDB"
 bg_color = "#6DE5F2"
@@ -20,5 +21,13 @@ console.print(
         title="MAIN MENU", 
         subtitle="",
         style=f"{tex_color}"
+    )
+)
+
+err_console.print( 
+    Panel(
+        menu,
+        title="MAIN MENU", 
+        subtitle=""
     )
 )
