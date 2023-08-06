@@ -5,3 +5,5 @@
 20/07/2023 07:01:15 ERROR:103 - 'Incorrect password entered'
 20/07/2023 07:04:41 ERROR:103 - 'Incorrect password entered'
 20/07/2023 07:05:58 ERROR:103 - 'Incorrect password entered'
+06/08/2023 19:18:26 ERROR:400 - 'API request is invalid'
+06/08/2023 19:19:12 ERROR:400 - 'API request is invalid'

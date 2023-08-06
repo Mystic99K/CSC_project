@@ -4,7 +4,7 @@ from utils import *
 
 def show_weather(selected_prof):
     weather_data = None
-    if selected_prof is None:
+    if not selected_prof:
         print("Your don't have a profile! Switching to guest mode...")
         city = input("Enter your city name: ")
         weather_data = get_weather_data(city)
