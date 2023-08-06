@@ -24,6 +24,8 @@ console.print(
     )
 )
 
+input("Enter your option: ")
+
 # err_console.print( 
 #     Panel(
 #         menu,
