@@ -24,10 +24,10 @@ console.print(
     )
 )
 
-err_console.print( 
-    Panel(
-        menu,
-        title="MAIN MENU", 
-        subtitle=""
-    )
-)
+# err_console.print( 
+#     Panel(
+#         menu,
+#         title="MAIN MENU", 
+#         subtitle=""
+#     )
+# )

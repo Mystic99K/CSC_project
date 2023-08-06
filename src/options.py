@@ -1,7 +1,6 @@
 import sqlite3
 import getpass
 from utils import *
-import utils # for using utils.loggedin
 from login import parse_prof
 
 def options(conn, cursor, crypt_cipher, selected_prof):
@@ -41,7 +40,7 @@ def options(conn, cursor, crypt_cipher, selected_prof):
                 print(f"""Success: Profile '{prof["name"]}' has been successfully added.""")
             input("Enter to go back: ")
         elif choice_o == "2":
-            if not utils.loggedin:
+            if not selected_prof:
                 input("You haven't yet logged in (ENTER): ")
                 continue
             
@@ -60,7 +59,7 @@ def options(conn, cursor, crypt_cipher, selected_prof):
             else:
                 pass
         elif choice_o == "3":
-            if not utils.loggedin:
+            if not selected_prof:
                 input("You haven't yet logged in (ENTER): ")
                 continue
             
