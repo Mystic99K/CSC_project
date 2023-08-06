@@ -1,0 +1,5 @@
+cryptography
+colorama
+rich
+getpass
+requests
