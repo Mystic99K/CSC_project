@@ -1,6 +1,7 @@
 from rich.panel import Panel
 from rich.console import Console
 from rich.text import Text
+from rich.prompt import Prompt
 
 console = Console()
 err_console = Console(stderr=True, style="bold red")
@@ -21,10 +22,11 @@ console.print(
         title="MAIN MENU", 
         subtitle="",
         style=f"{tex_color}"
-    )
+    ),
 )
+choice = Prompt.ask("Enter your option", style=f"{tex_color}")
 
-input("Enter your option: ")
+print(choice, type(choice))
 
 # err_console.print( 
 #     Panel(
