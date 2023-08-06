@@ -15,19 +15,21 @@ menu.append("2. Show weather\n")
 menu.append("3. Options\n")
 menu.append("4. Exit program\n")
 
-console.print( 
-    Panel(
-        menu,
-        title="MAIN MENU", 
-        subtitle="",
-        style=f"{tex_color}"
-    )
-)
-
-# err_console.print( 
+# console.print( 
 #     Panel(
 #         menu,
 #         title="MAIN MENU", 
-#         subtitle=""
+#         subtitle="",
+#         style=f"{tex_color}"
 #     )
 # )
+
+err_console.print( 
+    Panel(
+        "Press enter to continue",
+        title="MAIN MENU", 
+        subtitle=""
+        ),
+)
+
+input("")
