@@ -16,4 +16,4 @@ menu += "2. Show weather\n"
 menu += "3. Options\n"
 menu += "4. Exit program\n"
 
-print(menu)
+console.print(menu)
