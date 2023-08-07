@@ -24,7 +24,7 @@ console.print(
         style=f"{tex_color}"
     ),
 )
-choice = Prompt.ask("Enter your option")
+choice = Prompt.ask("Enter your option", style=f"{tex_color}")
 
 print(choice, type(choice))
 
