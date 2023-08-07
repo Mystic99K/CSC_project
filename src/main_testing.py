@@ -26,7 +26,7 @@ console.print(
 )
 choice = Prompt.ask("Enter your option")
 
-print(choice, type(choice))
+# print(choice, type(choice))
 
 # err_console.print( 
 #     Panel(
