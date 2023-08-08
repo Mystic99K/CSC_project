@@ -2,10 +2,11 @@ import sqlite3
 import getpass
 from utils import *
 from login import parse_prof
+from ui import *
 
 def options(conn, cursor, crypt_cipher, selected_prof):
     while True:
-        cls()
+        main_console.clear()
 
         option_menu = "\n=========================OPTIONS=========================\n"
         option_menu += "1. Create new profile\n"
