@@ -10,8 +10,9 @@ error
 weather_report
 password
 ---------------------------------------------------
-- add logout
-- add display all users table 
+- clear screen using rich - done
+- add logout - done
+- add display all users table - in work
 - add search function - linear and fuzzy at 60% 
 - logout deleted user
 - show successful message after changing city
