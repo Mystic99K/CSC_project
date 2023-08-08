@@ -16,3 +16,4 @@ password
 - logout deleted user
 - show successful message after changing city
 - check if city is valid maybe by using presaved city list
+- use try except to catch keyboard interrupt
