@@ -42,6 +42,7 @@ def show_weather(selected_prof):
 
         print(weather_menu)
         usr_choice = input('Enter your choice: ')
+        cls()
 
         print()  # Adding Blank space
         if usr_choice == "1":
