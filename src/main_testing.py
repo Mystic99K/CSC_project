@@ -1,30 +1,15 @@
-# from rich.panel import Panel
-# from rich.console import Console
-# from rich.text import Text
-# from rich.prompt import Prompt
+from rich.panel import Panel
+from rich.console import Console
+from rich.text import Text
+from rich.prompt import Prompt
 
-# console = Console()
-# err_console = Console(stderr=True, style="bold red")
+console = Console()
+err_console = Console(stderr=True, style="bold red")
 
 # tex_color = "#58ACDB"
 # bg_color = "#6DE5F2"
 
-# menu = Text()
-# menu.append(f"""[Currently logged in as Guest]\n""", style="italic red")
-# menu.append("1. Login\n")
-# menu.append("2. Show weather\n")
-# menu.append("3. Options\n")
-# menu.append("4. Exit program\n")
-
-# console.print( 
-#     Panel(
-#         menu,
-#         title="MAIN MENU", 
-#         subtitle="",
-#         style=f"{tex_color}"
-#     ),
-# )
-# choice = Prompt.ask("Enter your option")
+choice = Prompt.ask("Enter your option")
 
 # print(choice, type(choice))
 
@@ -48,16 +33,16 @@
 #     )
 # )
 
-import rich
+# import rich
 
-def ask_input(message):
-  """Asks the user for input in a rich panel."""
-  panel = rich.panel(message)
-  text_input = rich.TextInput(prompt="Enter your input: ")
-  panel.append(text_input)
+# def ask_input(message):
+#   """Asks the user for input in a rich panel."""
+#   panel = rich.panel(message)
+#   text_input = rich.TextInput(prompt="Enter your input: ")
+#   panel.append(text_input)
 
-  return text_input.run()
+#   return text_input.run()
 
-if __name__ == "__main__":
-  input = ask_input("Enter your name: ")
-  print(f"Your name is {input}")
+# if __name__ == "__main__":
+#   input = ask_input("Enter your name: ")
+#   print(f"Your name is {input}")

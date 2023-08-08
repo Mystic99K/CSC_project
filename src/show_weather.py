@@ -1,5 +1,5 @@
 import requests
-
+from ui import *
 from utils import *
 
 def show_weather(selected_prof):
@@ -12,7 +12,7 @@ def show_weather(selected_prof):
         weather_data = get_weather_data(selected_prof["city"])
 
     while True:
-        cls()
+        main_console.clear()
 
         weather_menu = "\n=========================WEATHER MENU=========================\n"
         weather_menu += "1. Show all Weather report\n"
@@ -42,7 +42,7 @@ def show_weather(selected_prof):
 
         print(weather_menu)
         usr_choice = input('Enter your choice: ')
-        cls()
+        main_console.clear()
 
         print()  # Adding Blank space
         if usr_choice == "1":

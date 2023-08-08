@@ -17,3 +17,4 @@ password
 - show successful message after changing city
 - check if city is valid maybe by using presaved city list
 - use try except to catch keyboard interrupt
+- update selected prof to edited profile

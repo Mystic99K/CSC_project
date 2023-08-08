@@ -1,6 +1,5 @@
 import sqlite3
 import getpass
-
 from utils import *
 
 def login(cursor, crypt_cipher, selected_prof):

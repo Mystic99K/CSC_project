@@ -1,6 +1,6 @@
 import cryptography.fernet as crypt
 import sqlite3
-
+from ui import *
 from utils import *
 from login import login
 from show_weather import show_weather
@@ -27,7 +27,7 @@ def __main__():
         conn.commit()  # Commit the changes to the database
 
     while True:
-        cls()
+        main_console.clear()
 
         menu = "\n=========================MAIN MENU=========================\n"
         if selected_prof:
@@ -37,8 +37,11 @@ def __main__():
         menu += "1. Login\n"
         menu += "2. Show weather\n"
         menu += "3. Options\n"
-        menu += "4. Exit program\n"
-        
+        if selected_prof:
+            menu += "4. Logout\n"
+            menu += "5. Exit program\n"
+        else:
+            menu += "4. Exit program\n"
         print(menu)
         usr_choice = input('Enter your choice: ')
 
@@ -49,6 +52,15 @@ def __main__():
             show_weather(selected_prof)
         elif usr_choice == "3":
             options(conn, cursor, crypt_cipher, selected_prof)
+        elif selected_prof:
+            if usr_choice == "4":
+                selected_prof = {}
+                main_console.clear()
+                print("Logged out! Switching to Guest...")
+                input("Enter to go back:")    
+            elif usr_choice == "5":
+                print("Exited program!")
+                break
         elif usr_choice == "4":
             print("Exited program!")
             break
