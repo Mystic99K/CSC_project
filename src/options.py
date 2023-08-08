@@ -3,6 +3,9 @@ import getpass
 from utils import *
 from login import parse_prof
 from ui import *
+from rich.table import Table
+from rich.console import Console
+from rich import box
 
 def options(conn, cursor, crypt_cipher, selected_prof):
     while True:
@@ -89,10 +92,18 @@ def options(conn, cursor, crypt_cipher, selected_prof):
                 cursor.execute(f"""SELECT * FROM profile""")
             except sqlite3.Error as err:
                 print(f"""Error: SQL command execution failed "{err}".""")
-            print(cursor.description)
-            all_profs = parse_prof(cursor.description, cursor.fetchone())
-            print(all_profs)
-            input("Enter to go back: ")
+
+            console = Console()
+            table = Table(show_header=True, header_style="bold magenta", show_lines=True, box=box.DOUBLE_EDGE)
+            table.add_column("Name", style="green")
+            table.add_column("City", style="cyan")
+
+            rows = cursor.fetchall()
+            for row in rows:
+                table.add_row(f"{row[1]}", f"{row[2]}")
+
+            console.print(table)
+
         elif choice_o == "6":
             break
         else:
