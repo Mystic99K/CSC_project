@@ -15,15 +15,15 @@ def print_menu(console, heading, tex_color, bg_color, menu):
     
     console.print(menu_pan)
     
-print_menu(
-    main_console,
-    "MAIN MENU",
-    "#58ACDB",
-    "",
-    Text()
-        .append(f"""[Currently logged in as Guest]\n""", style="italic red")
-        .append("1. Login\n")
-        .append("2. Show weather\n")
-        .append("3. Options\n")
-        .append("4. Exit program\n")
-)
+# print_menu(
+#     main_console,
+#     "MAIN MENU",
+#     "#58ACDB",
+#     "",
+#     Text()
+#         .append(f"""[Currently logged in as Guest]\n""", style="italic red")
+#         .append("1. Login\n")
+#         .append("2. Show weather\n")
+#         .append("3. Options\n")
+#         .append("4. Exit program\n")
+# )
