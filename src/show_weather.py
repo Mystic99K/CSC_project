@@ -12,7 +12,7 @@ def show_weather(selected_prof):
         weather_data = get_weather_data(selected_prof["city"])
 
     while True:
-        main_console.clear()
+        cls()
 
         weather_menu = "\n=========================WEATHER MENU=========================\n"
         weather_menu += "1. Show all Weather report\n"
@@ -42,7 +42,7 @@ def show_weather(selected_prof):
 
         print(weather_menu)
         usr_choice = input('Enter your choice: ')
-        main_console.clear()
+        cls()
 
         print()  # Adding Blank space
         if usr_choice == "1":

@@ -27,7 +27,7 @@ def __main__():
         conn.commit()  # Commit the changes to the database
 
     while True:
-        main_console.clear()
+        cls()
 
         menu = "\n=========================MAIN MENU=========================\n"
         if selected_prof:
@@ -55,7 +55,7 @@ def __main__():
         elif selected_prof:
             if usr_choice == "4":
                 selected_prof = {}
-                main_console.clear()
+                cls()
                 print("Logged out! Switching to Guest...")
                 input("Enter to go back:")    
             elif usr_choice == "5":

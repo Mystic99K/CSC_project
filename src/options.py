@@ -9,7 +9,7 @@ from rich import box
 
 def options(conn, cursor, crypt_cipher, selected_prof):
     while True:
-        main_console.clear()
+        cls()
 
         option_menu = "\n=========================OPTIONS=========================\n"
         option_menu += "1. Create new profile\n"
