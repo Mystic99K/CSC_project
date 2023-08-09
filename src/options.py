@@ -59,6 +59,8 @@ def options(conn, cursor, crypt_cipher, selected_prof):
                     print(f"""Error: SQL command execution failed "{err}".""")
                 else:
                     print(f"""Success: Profile '{selected_prof["name"]}' has been successfully removed.""")
+                    print('Logging out and switching to Guest...')
+                    selected_prof.clear()
                 input("Enter to go back: ")
             else:
                 pass

@@ -2,7 +2,7 @@
 - add logout - done
 - add display all users table - in work
 - add search function - linear and fuzzy at 60% 
-- logout deleted user
+- logout deleted user - done
 - show successful message after changing city
 - check if city is valid maybe by using presaved city list
 - use try except to catch keyboard interrupt
