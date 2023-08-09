@@ -106,6 +106,8 @@ def options(conn, cursor, crypt_cipher, selected_prof):
 
             console.print(table)
 
+            input("Enter to go back: ")
+
         elif choice_o == "6":
             break
         else:
