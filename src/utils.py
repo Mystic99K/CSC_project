@@ -1,25 +1,10 @@
 import os
 from datetime import date
 from datetime import datetime
-import colorama
-
-# START: Utility Constants
-colorama.init()
-c_black = colorama.Fore.BLACK
-c_red = colorama.Fore.RED
-c_green = colorama.Fore.GREEN
-c_yellow = colorama.Fore.YELLOW
-c_blue = colorama.Fore.BLUE
-c_magenta = colorama.Fore.MAGENTA
-c_cyan = colorama.Fore.CYAN
-c_white = colorama.Fore.WHITE
-c_reset = colorama.Fore.RESET
 
 API_KEY = "5c443b217be241e6b75175940230507"  # trq main acc
 PASSWRD_ENCRYPTION_KEY = b'Nk7_kbeQ1IQ4RVTV42dXS3fH37YahBCacZ9XpgKZyhQ='
 # END: Utility Constants
-
-
 
 # START: Utility Functions
 def cls():
@@ -28,7 +13,6 @@ def cls():
     else:
         os.system('clear')  # Unix based shells
     # pass
-
 
 
 def error_handle(error_code):
