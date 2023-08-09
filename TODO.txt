@@ -1,9 +1,8 @@
 - clear screen using rich - done
 - add logout - done
 - add display all users table - done
-- add search function - linear and fuzzy at 60% 
+- add search function linear and fuzzy at 60% 
 - logout deleted user - done
 - show successful message after changing city
-- check if city is valid maybe by using presaved city list
-- use try except to catch keyboard interrupt
+- use try except to catch keyboard interrupt (during login or password)
 - update selected prof to edited profile
