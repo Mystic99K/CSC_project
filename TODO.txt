@@ -1,6 +1,6 @@
 - clear screen using rich - done
 - add logout - done
-- add display all users table - in work
+- add display all users table - done
 - add search function - linear and fuzzy at 60% 
 - logout deleted user - done
 - show successful message after changing city
