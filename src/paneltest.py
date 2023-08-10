@@ -5,6 +5,7 @@ import requests
 from pprint import pprint
 from utils import *
 from rich.console import Console
+from rich.layout import Layout
 
 console = Console(height=8)
 API_KEY = "5c443b217be241e6b75175940230507"
@@ -60,9 +61,15 @@ panel1 = Panel(temperature_data,title='Temperature')
 panel2 = Panel(wind_data,title='Wind')
 panel3 = Panel(visib_data,title='Visiblity')
 
-# Put them in a Columns object
-columns = Columns([panel1, panel2, panel3],)
-pannel4 = Panel(columns,title='Weather Data')
+layout = Layout(name="root")
+layout.split_row(
+    Layout(panel1),
+    Layout(panel2),
+    Layout(panel3),
+)
+
+
+pannel4 = Panel(layout,title='Weather Data')
 
 # Print the columns
-console.print(m_panel)
+console.print(pannel4)
