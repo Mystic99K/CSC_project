@@ -58,9 +58,9 @@ visib_data += f"Visibility(km): {weather_data['current']['vis_km']}\n"
 visib_data += f"Visibility(Miles): {weather_data['current']['vis_miles']}\n"
 
 # Create three panels
-panel1 = Panel("Panel 1 content")
-panel2 = Panel("Panel 2 content")
-panel3 = Panel("Panel 3 content")
+panel1 = Panel(temperature_data)
+panel2 = Panel(wind_data)
+panel3 = Panel(visib_data)
 
 # Put them in a Columns object
 columns = Columns([panel1, panel2, panel3])
