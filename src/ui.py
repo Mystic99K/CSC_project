@@ -5,10 +5,11 @@ from rich.prompt import Prompt
 
 main_console = Console(color_system="standard")
 
-def print_menu(console, heading, tex_color, bg_color, menu):
+def print_menu(console, heading, tex_color,border_color, menu):
     menu_pan = Panel(
         menu,
-        title = heading, 
+        title = heading,
+        border_style = border_color,
         subtitle = "",
         style=f"{tex_color}"
     )

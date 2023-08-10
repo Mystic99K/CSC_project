@@ -37,7 +37,7 @@ def __main__():
             main_console,
             'Main Menu',
             'bright_cyan',
-            'black',
+            'bright_yellow',
             Text()
             .append(f"""[Currently logged in as '{selected_prof["name"]}']\n""")
             .append("1. Login\n")
@@ -52,7 +52,7 @@ def __main__():
             main_console,
             'Main Menu',
             'bright_cyan',
-            'black',
+            'bright_yellow',
             Text()
             .append(f"""[Currently logged in as Guest]\n""", style="italic red")
             .append("1. Login\n")
