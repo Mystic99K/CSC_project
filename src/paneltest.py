@@ -4,8 +4,9 @@ from rich.columns import Columns
 import requests
 from pprint import pprint
 from utils import *
+from rich.console import Console
 
-
+console = Console()
 API_KEY = "5c443b217be241e6b75175940230507"
 city = input("Enter city test : ")
 
@@ -38,32 +39,30 @@ def get_weather_data(city):  # Getting API response
 
 weather_data = get_weather_data(mycity)
 
-weather_menu = "\n=========================WEATHER MENU=========================\n"
-temperature_data = f"\n=========================TEMPERATURE=========================\n"
-temperature_data += f"Temperature(°C): {weather_data['current']['temp_c']}°C\n"
+
+temperature_data = f"Temperature(°C): {weather_data['current']['temp_c']}°C\n"
 temperature_data += f"Temperature(°F): {weather_data['current']['temp_f']}°F\n"
 temperature_data += f"Feels like(°C): {weather_data['current']['feelslike_c']}°C\n"
-temperature_data += f"Feels like(°F): {weather_data['current']['feelslike_f']}°F\n"
+temperature_data += f"Feels like(°F): {weather_data['current']['feelslike_f']}°F"
 
-wind_data = f"\n=========================WIND=========================\n"
-wind_data += f"Wind Speed(mph): {weather_data['current']['wind_mph']}m/h\n"
+wind_data = f"Wind Speed(mph): {weather_data['current']['wind_mph']}m/h\n"
 wind_data += f"Max Wind Speed(mph): {weather_data['current']['gust_mph']}m/h\n"
 wind_data += f"Wind Speed(kmph): {weather_data['current']['wind_kph']}km/h\n"
 wind_data += f"Max Wind Speed(kmph): {weather_data['current']['gust_kph']}km/h\n"
 wind_data += f"Wind Degree: {weather_data['current']['wind_degree']}°\n"
-wind_data += f"Wind Direction: {weather_data['current']['wind_dir']}\n"
+wind_data += f"Wind Direction: {weather_data['current']['wind_dir']}"
 
-visib_data = f"\n=========================VISIBILITY=========================\n"
-visib_data += f"Visibility(km): {weather_data['current']['vis_km']}\n"
-visib_data += f"Visibility(Miles): {weather_data['current']['vis_miles']}\n"
+visib_data = f"Visibility(km): {weather_data['current']['vis_km']}\n"
+visib_data += f"Visibility(Miles): {weather_data['current']['vis_miles']}"
 
 # Create three panels
-panel1 = Panel(temperature_data)
-panel2 = Panel(wind_data)
-panel3 = Panel(visib_data)
+panel1 = Panel(temperature_data,title='Temperature')
+panel2 = Panel(wind_data,title='Wind')
+panel3 = Panel(visib_data,title='Visiblity')
 
 # Put them in a Columns object
-columns = Columns([panel1, panel2, panel3])
+columns = Columns([panel1, panel2, panel3],)
+pannel4 = Panel(columns,title='Weather Data')
 
 # Print the columns
-print(columns)
+console.print(pannel4)
