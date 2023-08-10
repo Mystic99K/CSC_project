@@ -4,6 +4,7 @@ from rich.text import Text
 from rich.prompt import Prompt
 
 main_console = Console(color_system="standard")
+align = "Left"
 
 def print_menu(console, heading, tex_color,border_color, menu):
     menu_pan = Panel(

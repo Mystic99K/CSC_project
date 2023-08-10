@@ -38,7 +38,7 @@ def __main__():
             'Main Menu',
             'bright_cyan',
             'bright_yellow',
-            Text()
+            Text(justify=f"{align}")
             .append(f"""[Currently logged in as '{selected_prof["name"]}']\n""", style="italic red")
             .append("1. Login\n")
             .append("2. Show weather\n")
@@ -53,7 +53,7 @@ def __main__():
             'Main Menu',
             'bright_cyan',
             'bright_yellow',
-            Text()
+            Text(justify=f"{align}")
             .append(f"""[Currently logged in as 'Guest']\n""", style="italic red")
             .append("1. Login\n")
             .append("2. Show weather\n")
