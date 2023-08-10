@@ -91,3 +91,9 @@ def get_weather_data(city):  # Getting API response
         print(f"Could not find weather data for {city}.")
         error_handle(response.status_code)
         return None
+    
+def search_city(city):  # Returns closely matched names
+    url = f"http://api.weatherapi.com/v1/search.json?key={API_KEY}&q={city}"
+    response = requests.get(url)
+    data = response.json()
+    return data
