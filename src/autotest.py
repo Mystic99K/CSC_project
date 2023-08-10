@@ -13,5 +13,3 @@ def search_city(city):  # Getting API response
 
 testdata = search_city(city)
 pprint(testdata)
-
-for 

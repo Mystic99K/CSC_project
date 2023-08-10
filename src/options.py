@@ -1,13 +1,15 @@
 import sqlite3
 import getpass
+
 from utils import *
 from login import parse_prof
 from ui import *
+
 from rich.table import Table
 from rich.console import Console
 from rich import box
 
-#  Jimmy help us part 2, we too Dumb for this shit
+
 def options(conn, cursor, crypt_cipher, selected_prof,align):
     while True:
         cls()
@@ -16,13 +18,13 @@ def options(conn, cursor, crypt_cipher, selected_prof,align):
             'Main Menu',
             'bright_cyan',
             'bright_yellow',
-            Text(justify=f"{align}")
-            .append("1. Create new profile\n")
-            .append("2. Delete your profile\n")
-            .append("3. Edit your profile\n")
-            .append("4. Search your profile (not yet)\n")
-            .append("5. Display all saved profiles (not yet)\n")
-            .append("6. Exit options menu")
+            Text()
+                .append("1. Create new profile\n")
+                .append("2. Delete your profile\n")
+                .append("3. Edit your profile\n")
+                .append("4. Search your profile (not yet)\n")
+                .append("5. Display all saved profiles (not yet)\n")
+                .append("6. Exit options menu")
         )
 
         choice_o = input("Enter your choice: ")
@@ -93,7 +95,6 @@ def options(conn, cursor, crypt_cipher, selected_prof,align):
             else:
                 print(f"""Success: Profile '{selected_prof["name"]}' has been successfully updated.""")
             input("Enter to go back: ")
-            
         elif choice_o == "5":
             try:
                 cursor.execute(f"""SELECT * FROM profile""")
@@ -112,41 +113,7 @@ def options(conn, cursor, crypt_cipher, selected_prof,align):
             console.print(table)
 
             input("Enter to go back: ")
-
         elif choice_o == "6":
-            while True:
-                cls()
-                
-                print_menu(
-                    main_console,
-                    'Alignment Menu',
-                    'bright_cyan',
-                    'bright_yellow',
-                    Text(justify=f"{align}")
-                    .append("1. Left\n")
-                    .append("2. Center\n")
-                    .append("3. Right")
-                )
-                
-                usr_choice = input('Enter your choice: ')
-                
-                if usr_choice == "1":
-                    align = "Left"
-                
-                elif usr_choice == "2":
-                    align = "Center"
-                
-                elif usr_choice == "3":
-                    align = "Right"
-                
-                else:
-                    input("Error: Invalid input (ENTER): ")
-                    continue
-                
-                break
-                    
-        
-        elif choice_o == "7":
             break
         else:
             input("Error: Invalid input (ENTER): ")

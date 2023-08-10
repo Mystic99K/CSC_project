@@ -34,32 +34,31 @@ def __main__():
         
         if selected_prof:
             print_menu(
-            main_console,
-            'Main Menu',
-            'bright_cyan',
-            'bright_yellow',
-            Text(justify=f"{align}")
-            .append(f"""[Currently logged in as '{selected_prof["name"]}']\n""", style="italic red")
-            .append("1. Login\n")
-            .append("2. Show weather\n")
-            .append("3. Options\n")
-            .append("4. Logout\n")
-            .append("5. Exit program\n")
-        )
-            
+                main_console,
+                'Main Menu',
+                'bright_cyan',
+                'bright_yellow',
+                Text()
+                    .append(f"""[Currently logged in as '{selected_prof["name"]}']\n""", style="italic red")
+                    .append("1. Login\n")
+                    .append("2. Show weather\n")
+                    .append("3. Options\n")
+                    .append("4. Logout\n")
+                    .append("5. Exit program\n")
+            )
         else:
             print_menu(
-            main_console,
-            'Main Menu',
-            'bright_cyan',
-            'bright_yellow',
-            Text(justify=f"{align}")
-            .append(f"""[Currently logged in as 'Guest']\n""", style="italic red")
-            .append("1. Login\n")
-            .append("2. Show weather\n")
-            .append("3. Options\n")
-            .append("4. Exit program\n")
-        )
+                main_console,
+                'Main Menu',
+                'bright_cyan',
+                'bright_yellow',
+                Text()
+                    .append(f"""[Currently logged in as 'Guest']\n""", style="italic red")
+                    .append("1. Login\n")
+                    .append("2. Show weather\n")
+                    .append("3. Options\n")
+                    .append("4. Exit program\n")
+            )
 
         
         usr_choice = input('Enter your choice: ')
@@ -70,7 +69,7 @@ def __main__():
         elif usr_choice == "2":
             show_weather(selected_prof)
         elif usr_choice == "3":
-            options(conn, cursor, crypt_cipher, selected_prof,align)
+            options(conn, cursor, crypt_cipher, selected_prof)
         elif selected_prof:
             if usr_choice == "4":
                 selected_prof = {}
