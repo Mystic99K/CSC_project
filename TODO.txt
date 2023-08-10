@@ -6,3 +6,4 @@
 - show successful message after changing city
 - use try except to catch keyboard interrupt (during login or password)
 - update selected prof to edited profile
+- use rich password prompt
