@@ -29,7 +29,7 @@ else:
 
 
 #ask jimmy to intigrate this shit becuse i cant understand anythoinggggg
-console.print(Panel(menu,title='Main Menu', style=f"bright_cyan on {theme}",border_style='bright_yellow',box=box.DOUBLE_EDGE))
+console.print(Panel(menu,title='Main Menu', style=f"bright_cyan on {theme}", border_style='bright_yellow', box=box.DOUBLE_EDGE))
 
 choice = Prompt.ask("Enter your option")
 
