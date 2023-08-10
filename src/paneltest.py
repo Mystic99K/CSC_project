@@ -61,7 +61,7 @@ panel2 = Panel(wind_data,title='Wind')
 panel3 = Panel(visib_data,title='Visiblity')
 
 # Put them in a Columns object
-columns = Columns([panel1, panel2, panel3],)
+columns = Columns([panel1, panel2, panel3], align="center", expand=True)
 pannel4 = Panel(columns,title='Weather Data')
 
 # Print the columns
