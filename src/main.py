@@ -6,6 +6,9 @@ from login import login
 from show_weather import show_weather
 from options import options
 
+console = Console()
+
+
 def __main__():
     db_exists = False
     
@@ -28,21 +31,37 @@ def __main__():
 
     while True:
         cls()
+        
+        if selected_prof:
+            print_menu(
+            main_console,
+            'Main Menu',
+            'bright_cyan',
+            'black',
+            Text()
+            .append(f"""[Currently logged in as '{selected_prof["name"]}']\n""")
+            .append("1. Login\n")
+            .append("2. Show weather\n")
+            .append("3. Options\n")
+            .append("4. Logout\n")
+            .append("5. Exit program\n")
+        )
+            
+        else:
+            print_menu(
+            main_console,
+            'Main Menu',
+            'bright_cyan',
+            'black',
+            Text()
+            .append(f"""[Currently logged in as Guest]\n""", style="italic red")
+            .append("1. Login\n")
+            .append("2. Show weather\n")
+            .append("3. Options\n")
+            .append("4. Exit program\n")
+        )
 
-        menu = "\n=========================MAIN MENU=========================\n"
-        if selected_prof:
-            menu += f"""[Currently logged in as '{selected_prof["name"]}']\n"""
-        else:
-            menu += f"""[Currently logged in as Guest]\n"""
-        menu += "1. Login\n"
-        menu += "2. Show weather\n"
-        menu += "3. Options\n"
-        if selected_prof:
-            menu += "4. Logout\n"
-            menu += "5. Exit program\n"
-        else:
-            menu += "4. Exit program\n"
-        print(menu)
+        
         usr_choice = input('Enter your choice: ')
 
 
