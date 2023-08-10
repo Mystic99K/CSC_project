@@ -15,14 +15,6 @@ def search_city(city):  # Getting API response
 
 
 testdata = search_city(city)
-def search_city(city):  # Getting API response
-    url = f"http://api.weatherapi.com/v1/search.json?key={API_KEY}&q={city}"
-    response = requests.get(url)
-    data = response.json()
-    return data
-
-
-testdata = search_city(city)
 
 print("Did u mean:")
 for i, dict in enumerate(testdata, start=1):
@@ -30,3 +22,4 @@ for i, dict in enumerate(testdata, start=1):
 
 choice = int(input("Enter choice: "))  # Get user input
 mycity = testdata[choice-1]['name']  # Subtract 1 because list indices start at 0
+
