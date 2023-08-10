@@ -3,7 +3,7 @@ from rich.panel import Panel
 from rich.columns import Columns
 import requests
 from pprint import pprint
-from /src/utils import *
+from utils import *
 
 
 API_KEY = "5c443b217be241e6b75175940230507"
