@@ -1,2 +1,7 @@
 /db/
 /.idea/
+src/__pycache__/login.cpython-311.pyc
+src/__pycache__/options.cpython-311.pyc
+src/__pycache__/show_weather.cpython-311.pyc
+src/__pycache__/ui.cpython-311.pyc
+src/__pycache__/utils.cpython-311.pyc
