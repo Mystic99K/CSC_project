@@ -20,52 +20,82 @@ def show_weather(selected_prof):
     
     while True:
         cls()
+        
+        print_menu(
+                w_console,
+                'Weather Menu',
+                'bright_cyan',
+                'bright_yellow',
+                Text()
+                    .append("1. Show all Weather report\n")
+                    .append("2. Temperature\n")
+                    .append("3. Wind\n")
+                    .append("4. Visibility\n")
+                    .append("5. Show report of different city\n")
+                    .append("6. Exit weather menu\n")
+            )
 
-        weather_menu = "\n=========================WEATHER MENU=========================\n"
-        weather_menu += "1. Show all Weather report\n"
-        weather_menu += "2. Temperature\n"
-        weather_menu += "3. Wind\n"
-        weather_menu += "4. Visibility\n"
-        weather_menu += "5. Show report of different city\n"
-        weather_menu += "6. Exit weather menu\n"
-
-        temperature_data = f"\n=========================TEMPERATURE=========================\n"
-        temperature_data += f"Temperature(°C): {weather_data['current']['temp_c']}°C\n"
+        temperature_data = f"Temperature(°C): {weather_data['current']['temp_c']}°C\n"
         temperature_data += f"Temperature(°F): {weather_data['current']['temp_f']}°F\n"
         temperature_data += f"Feels like(°C): {weather_data['current']['feelslike_c']}°C\n"
-        temperature_data += f"Feels like(°F): {weather_data['current']['feelslike_f']}°F\n"
+        temperature_data += f"Feels like(°F): {weather_data['current']['feelslike_f']}°F"
 
-        wind_data = f"\n=========================WIND=========================\n"
-        wind_data += f"Wind Speed(mph): {weather_data['current']['wind_mph']}m/h\n"
+        wind_data = f"Wind Speed(mph): {weather_data['current']['wind_mph']}m/h\n"
         wind_data += f"Max Wind Speed(mph): {weather_data['current']['gust_mph']}m/h\n"
         wind_data += f"Wind Speed(kmph): {weather_data['current']['wind_kph']}km/h\n"
         wind_data += f"Max Wind Speed(kmph): {weather_data['current']['gust_kph']}km/h\n"
         wind_data += f"Wind Degree: {weather_data['current']['wind_degree']}°\n"
-        wind_data += f"Wind Direction: {weather_data['current']['wind_dir']}\n"
+        wind_data += f"Wind Direction: {weather_data['current']['wind_dir']}"
 
-        visib_data = f"\n=========================VISIBILITY=========================\n"
-        visib_data += f"Visibility(km): {weather_data['current']['vis_km']}\n"
-        visib_data += f"Visibility(Miles): {weather_data['current']['vis_miles']}\n"
+        visib_data = f"Visibility(km): {weather_data['current']['vis_km']}\n"
+        visib_data += f"Visibility(Miles): {weather_data['current']['vis_miles']}"
+        
+        temp = Panel(temperature_data,title='Temperature',border_style='bright_yellow',style='bright_cyan')
+        wind = Panel(wind_data,title='Wind',border_style='bright_yellow',style='bright_cyan')
+        visib = Panel(visib_data,title='Visiblity',border_style='bright_yellow',style='bright_cyan')
 
-        print(weather_menu)
         usr_choice = input('Enter your choice: ')
         cls()
 
         print()  # Adding Blank space
         if usr_choice == "1":
-            print(temperature_data)
-            print(wind_data)
-            print(visib_data)
+            layout = Layout(name="root")
+            layout.split_row(
+                Layout(temp),
+                Layout(wind),
+                Layout(visib),
+                )
+            m_panel = Panel(layout,title='Weather Data',border_style='bright_yellow',style='bright_cyan')
+            w_console.print(m_panel)
             input("Enter to go back: ")
+            
         elif usr_choice == "2":
-            print(temperature_data)
+            layout = Layout(name="root")
+            layout.split_row(
+                Layout(temp),
+                )
+            m_panel = Panel(layout,title='Weather Data',border_style='bright_yellow',style='bright_cyan')
+            w_console.print(m_panel)
             input("Enter to go back: ")
+            
         elif usr_choice == "3":
-            print(wind_data)
+            layout = Layout(name="root")
+            layout.split_row(
+                Layout(wind)
+                )
+            m_panel = Panel(layout,title='Weather Data',border_style='bright_yellow',style='bright_cyan')
+            w_console.print(m_panel)
             input("Enter to go back: ")
+            
         elif usr_choice == "4":
-            print(visib_data)
+            layout = Layout(name="root")
+            layout.split_row(
+                Layout(visib)
+                )
+            m_panel = Panel(layout,title='Weather Data')
+            w_console.print(m_panel)
             input("Enter to go back: ")
+            
         elif usr_choice == "5":
             city = input(
                 f"""Enter your city name (Your City-{city}): """)
@@ -74,7 +104,7 @@ def show_weather(selected_prof):
                 print("Error: weather_data is none!")
                 input("Enter to go back: ")
                 return
-            input("Enter to go back: ")
+            
         elif usr_choice == "6":
             break
         else:
