@@ -70,7 +70,7 @@ def __main__():
         elif usr_choice == "2":
             show_weather(selected_prof)
         elif usr_choice == "3":
-            options(conn, cursor, crypt_cipher, selected_prof)
+            options(conn, cursor, crypt_cipher, selected_prof,align)
         elif selected_prof:
             if usr_choice == "4":
                 selected_prof = {}
