@@ -7,19 +7,24 @@ from rich.table import Table
 from rich.console import Console
 from rich import box
 
-def options(conn, cursor, crypt_cipher, selected_prof):
+#  Jimmy help us part 2, we too Dumb for this shit
+def options(conn, cursor, crypt_cipher, selected_prof,align):
     while True:
         cls()
+        print_menu(
+            main_console,
+            'Main Menu',
+            'bright_cyan',
+            'bright_yellow',
+            Text(justify=f"{align}")
+            .append("1. Create new profile\n")
+            .append("2. Delete your profile\n")
+            .append("3. Edit your profile\n")
+            .append("4. Search your profile (not yet)\n")
+            .append("5. Display all saved profiles (not yet)\n")
+            .append("6. Exit options menu")
+        )
 
-        option_menu = "\n=========================OPTIONS=========================\n"
-        option_menu += "1. Create new profile\n"
-        option_menu += "2. Delete your profile\n"
-        option_menu += "3. Edit your profile\n"
-        option_menu += "4. Search your profile (not yet)\n"
-        option_menu += "5. Display all saved profiles (not yet)\n"
-        option_menu += "6. Exit options menu\n"
-
-        print(option_menu)
         choice_o = input("Enter your choice: ")
 
         if choice_o == "1":
@@ -109,6 +114,39 @@ def options(conn, cursor, crypt_cipher, selected_prof):
             input("Enter to go back: ")
 
         elif choice_o == "6":
+            while True:
+                cls()
+                
+                print_menu(
+                    main_console,
+                    'Alignment Menu',
+                    'bright_cyan',
+                    'bright_yellow',
+                    Text(justify=f"{align}")
+                    .append("1. Left\n")
+                    .append("2. Center\n")
+                    .append("3. Right")
+                )
+                
+                usr_choice = input('Enter your choice: ')
+                
+                if usr_choice == "1":
+                    align = "Left"
+                
+                elif usr_choice == "2":
+                    align = "Center"
+                
+                elif usr_choice == "3":
+                    align = "Right"
+                
+                else:
+                    input("Error: Invalid input (ENTER): ")
+                    continue
+                
+                break
+                    
+        
+        elif choice_o == "7":
             break
         else:
             input("Error: Invalid input (ENTER): ")
