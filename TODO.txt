@@ -7,3 +7,4 @@
 - use try except to catch keyboard interrupt (during login or password)
 - update selected prof to edited profile
 - use rich password prompt
+- integerate did u mean feature from panel test
