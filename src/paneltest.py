@@ -5,10 +5,9 @@ import requests
 from pprint import pprint
 from utils import *
 from rich.console import Console
+from rich.layout import Layout
 
-cls()
-
-console = Console()
+console = Console(height=8)
 API_KEY = "5c443b217be241e6b75175940230507"
 city = input("Enter city test : ")
 
@@ -58,13 +57,19 @@ visib_data = f"Visibility(km): {weather_data['current']['vis_km']}\n"
 visib_data += f"Visibility(Miles): {weather_data['current']['vis_miles']}"
 
 # Create three panels
-panel1 = Panel(temperature_data,title='Temperature', expand=True)
-panel2 = Panel(wind_data,title='Wind', expand=True)
-panel3 = Panel(visib_data,title='Visiblity', expand=True)
+panel1 = Panel(temperature_data,title='Temperature')
+panel2 = Panel(wind_data,title='Wind')
+panel3 = Panel(visib_data,title='Visiblity')
 
-# Put them in a Columns object
-columns = Columns([panel1, panel2, panel3], align="center", expand=True)
-pannel4 = Panel(columns,title='Weather Data')
+layout = Layout(name="root")
+layout.split_row(
+    Layout(panel1),
+    Layout(panel2),
+    Layout(panel3),
+)
+
+
+pannel4 = Panel(layout,title='Weather Data')
 
 # Print the columns
 console.print(pannel4)

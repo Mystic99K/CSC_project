@@ -10,7 +10,7 @@ from rich.console import Console
 from rich import box
 
 
-def options(conn, cursor, crypt_cipher, selected_prof,align):
+def options(conn, cursor, crypt_cipher, selected_prof):
     while True:
         cls()
         print_menu(
@@ -102,9 +102,9 @@ def options(conn, cursor, crypt_cipher, selected_prof,align):
                 print(f"""Error: SQL command execution failed "{err}".""")
 
             console = Console()
-            table = Table(show_header=True, header_style="bold magenta", show_lines=True, box=box.DOUBLE_EDGE)
-            table.add_column("Name", style="green")
-            table.add_column("City", style="cyan")
+            table = Table(show_header=True, header_style="bold bright_magenta",border_style='bright_yellow' , show_lines=True, box=box.DOUBLE_EDGE)
+            table.add_column("Name", style="bright_green")
+            table.add_column("City", style="bright_blue")
 
             rows = cursor.fetchall()
             for row in rows:
