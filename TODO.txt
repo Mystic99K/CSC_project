@@ -8,3 +8,5 @@
 - update selected prof to edited profile
 - use rich password prompt
 - integerate did u mean feature from panel test
+- changing units of measurements by user
+- adding city title to weather data layout table
