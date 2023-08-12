@@ -23,7 +23,7 @@ def options(conn, cursor, crypt_cipher, selected_prof):
                 .append("2. Delete your profile\n")
                 .append("3. Edit your profile\n")
                 .append("4. Search your profile (not yet)\n")
-                .append("5. Display all saved profiles (not yet)\n")
+                .append("5. Display all saved profiles\n")
                 .append("6. Exit options menu")
         )
 

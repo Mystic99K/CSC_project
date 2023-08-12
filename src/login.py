@@ -1,5 +1,7 @@
 import sqlite3
-import msvcrt
+import os
+import sys
+import getch
 from utils import *
 
 def login(cursor, crypt_cipher, selected_prof):
@@ -45,21 +47,41 @@ def parse_prof(cursor_table_desc, record):
 
 
 def input_password(prompt='Password: '):
-    print(prompt, end='', flush=True)
-    
-    password = ''
-    while True:
-        key = msvcrt.getch().decode('utf-8')
+    if os.name == 'nt':
+        import msvcrt
         
-        if key == '\r' or key == '\n':
-            break
+        print(prompt, end='', flush=True)
+        password = ''
+        while True:
+            key = msvcrt.getch().decode('utf-8')
+            if key == '\r' or key == '\n':
+                break
+            if key == '\x08':
+                password = password[:-1]
+                print('\b \b', end='', flush=True)
+            else:
+                password += key
+                print('*', end='', flush=True)
         
-        if key == '\x08':
-            password = password[:-1]
-            print('\b \b', end='', flush=True)
-        else:
-            password += key
-            print('*', end='', flush=True)
-    
-    print()
-    return password
+        print()
+        return password
+    else:
+        sys.stdout.write(prompt)
+        sys.stdout.flush()
+        
+        password = ''
+        while True:
+            char = getch.getch()
+            if char == '\r' or char == '\n':
+                break
+            if char == '\x7f':
+                password = password[:-1]
+                sys.stdout.write('\b \b')
+                sys.stdout.flush()
+            else:
+                password += char
+                sys.stdout.write('*')
+                sys.stdout.flush()
+        sys.stdout.write('\n')
+        sys.stdout.flush()
+        return password
