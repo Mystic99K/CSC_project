@@ -1,4 +1,4 @@
 /.idea/
 errors/error_log.txt
 tests/scratch.py
-/src/__pycache__/*
+/src/__pycache__/
