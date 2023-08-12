@@ -1,8 +1,8 @@
 import sqlite3
-import getpass
 
 from utils import *
 from login import parse_prof
+from login import input_password
 from ui import *
 
 from rich.table import Table
@@ -34,7 +34,7 @@ def options(conn, cursor, crypt_cipher, selected_prof):
                 "name": input('Enter name of the profile: '),
                 "city": input('Enter name of the city: '),
                 "password_hash": crypt_cipher.encrypt(
-                    getpass.getpass("Enter profile's password: ").encode("utf-8")
+                    input_password("Enter profile's password: ").encode("utf-8")
                 )
             }
 

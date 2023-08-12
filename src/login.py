@@ -1,5 +1,5 @@
 import sqlite3
-import getpass
+import msvcrt
 from utils import *
 
 def login(cursor, crypt_cipher, selected_prof):
@@ -20,7 +20,7 @@ def login(cursor, crypt_cipher, selected_prof):
             error_handle(103)
             continue
                 
-        in_prof_password = getpass.getpass("Enter the profile's password: ")
+        in_prof_password = input_password("Enter the profile's password: ")
         dnc_password_hash = crypt_cipher.decrypt(matched_prof["password_hash"]).decode()
         if in_prof_password == dnc_password_hash:
             input(f"""Success: You are logged in as '{matched_prof["name"]}' (ENTER): """)
@@ -42,3 +42,24 @@ def parse_prof(cursor_table_desc, record):
 
         prof[field_name] = field_data
     return prof
+
+
+def input_password(prompt='Password: '):
+    print(prompt, end='', flush=True)
+    
+    password = ''
+    while True:
+        key = msvcrt.getch().decode('utf-8')
+        
+        if key == '\r' or key == '\n':
+            break
+        
+        if key == '\x08':
+            password = password[:-1]
+            print('\b \b', end='', flush=True)
+        else:
+            password += key
+            print('*', end='', flush=True)
+    
+    print()
+    return password
