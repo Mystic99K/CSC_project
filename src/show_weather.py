@@ -9,10 +9,21 @@ def show_weather(selected_prof):
     if not selected_prof:
         print("Your don't have a profile! Switching to guest mode...")
         city = input("Enter your city name: ")
+        testdata = search_city(city)
+        
     else:
         city = selected_prof["city"]
         
-    weather_data = get_weather_data(city)
+        testdata = search_city(city)
+
+    print("Did u mean:")
+    for i, dict in enumerate(testdata, start=1):
+        print(f"{i} . {dict['name']} ({dict['country']})")
+
+    choice = int(input("Enter choice: "))  # Get user input
+    mycity = testdata[choice-1]['name']  # Subtract 1 because list indices start at 0
+
+    weather_data = get_weather_data(mycity)
     if weather_data is None:
         print("Error: weather_data is none!")
         input("Enter to go back: ")
