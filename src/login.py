@@ -1,7 +1,12 @@
 import sqlite3
 import os
 import sys
-import getch
+
+if os.name == "nt":
+    import msvcrt
+else:
+    import getch
+
 from utils import *
 
 def login(cursor, crypt_cipher, selected_prof):
@@ -26,11 +31,11 @@ def login(cursor, crypt_cipher, selected_prof):
         dnc_password_hash = crypt_cipher.decrypt(matched_prof["password_hash"]).decode()
         if in_prof_password == dnc_password_hash:
             input(f"""Success: You are logged in as '{matched_prof["name"]}' (ENTER): """)
-            for key in matched_prof.keys():
-                selected_prof[key] = matched_prof[key]
+            for char in matched_prof.keys():
+                selected_prof[char] = matched_prof[char]
             break
         else:
-            input("""Error: Password entered is wrong, re-enter password (ENTER): """)
+            input("""Error: Password entered is wrong (ENTER): """)
             continue
         
 def parse_prof(cursor_table_desc, record):
@@ -47,41 +52,46 @@ def parse_prof(cursor_table_desc, record):
 
 
 def input_password(prompt='Password: '):
-    if os.name == 'nt':
-        import msvcrt
-        
-        print(prompt, end='', flush=True)
-        password = ''
-        while True:
-            key = msvcrt.getch().decode('utf-8')
-            if key == '\r' or key == '\n':
-                break
-            if key == '\x08':
-                password = password[:-1]
-                print('\b \b', end='', flush=True)
-            else:
-                password += key
-                print('*', end='', flush=True)
-        
-        print()
-        return password
-    else:
-        sys.stdout.write(prompt)
-        sys.stdout.flush()
-        
-        password = ''
-        while True:
+    print(prompt, end='', flush=True)
+    password = ''
+    
+    while True:
+        char = ""
+        if os.name == "nt":
+            char = msvcrt.getch().decode('utf-8')
+        else:
             char = getch.getch()
-            if char == '\r' or char == '\n':
-                break
-            if char == '\x7f':
-                password = password[:-1]
-                sys.stdout.write('\b \b')
-                sys.stdout.flush()
-            else:
-                password += char
-                sys.stdout.write('*')
-                sys.stdout.flush()
-        sys.stdout.write('\n')
-        sys.stdout.flush()
-        return password
+            
+        if char == '\r' or char == '\n':
+            break
+        
+        if char == '\x08':
+            password = password[:-1]
+            print('\b \b', end='', flush=True)
+        else:
+            password += char
+            print('*', end='', flush=True)
+    
+    print()
+    return password
+
+
+    # sys.stdout.write(prompt)
+    # sys.stdout.flush()
+    
+    # password = ''
+    # while True:
+    #     char = getch.getch()
+    #     if char == '\r' or char == '\n':
+    #         break
+    #     if char == '\x7f':
+    #         password = password[:-1]
+    #         sys.stdout.write('\b \b')
+    #         sys.stdout.flush()
+    #     else:
+    #         password += char
+    #         sys.stdout.write('*')
+    #         sys.stdout.flush()
+    # sys.stdout.write('\n')
+    # sys.stdout.flush()
+    # return password

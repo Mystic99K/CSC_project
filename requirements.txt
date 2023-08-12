@@ -3,3 +3,4 @@ colorama
 rich
 getpass
 requests
+getch
