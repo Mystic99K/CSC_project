@@ -17,3 +17,6 @@ src/__pycache__/options.cpython-310.pyc
 src/__pycache__/show_weather.cpython-310.pyc
 .gitignore
 src/__pycache__/utils.cpython-310.pyc
+src/__pycache__/login.cpython-310.pyc
+src/__pycache__/options.cpython-310.pyc
+src/__pycache__/*
