@@ -2,3 +2,4 @@
 errors/error_log.txt
 tests/scratch.py
 /src/__pycache__/
+.vscode/settings.json
