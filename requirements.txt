@@ -1,6 +1,4 @@
 cryptography
-colorama
 rich
-getpass
 requests
 getch
