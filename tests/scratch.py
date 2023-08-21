@@ -1,3 +1,6 @@
+import os
+import getch
+
 def input_password(prompt='Password: '):
     print(prompt, end='', flush=True)
     password = ''
@@ -23,3 +26,5 @@ def input_password(prompt='Password: '):
     
     print()
     return password
+
+print(input_password())
