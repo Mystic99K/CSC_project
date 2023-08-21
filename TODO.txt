@@ -12,3 +12,4 @@
 - adding city title to weather data layout table - PENDING
 - if only one city, dont show did u mean, do for both guest and logged in user - PENDING
 - visibility looks gae - PENDING
+- show report of different city - PENDING
