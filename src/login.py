@@ -1,12 +1,5 @@
 import sqlite3
-import os
-import sys
-
-if os.name == "nt":
-    import msvcrt
-else:
-    import getch
-
+import pwinput
 from utils import *
 
 def login(cursor, crypt_cipher, selected_prof):
@@ -50,3 +43,6 @@ def parse_prof(cursor_table_desc, record):
         prof[field_name] = field_data
     return prof
 
+def input_password(prompt='Enter your passowrd'):
+    password = pwinput.pwinput(f"{prompt}", mask='*')
+    return password
