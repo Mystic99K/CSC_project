@@ -9,6 +9,8 @@
 - visibility looks gae - PENDING
 - show report of different city - PENDING
 - trigger did u mean in creating new profile menu - PENDING
+- uniform errors and outputs - PENDING
+
 
 --------done-----------
 - add logout - done
