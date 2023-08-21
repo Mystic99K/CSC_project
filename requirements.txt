@@ -1,4 +1,4 @@
 cryptography
 rich
 requests
-getch
+pwinput
