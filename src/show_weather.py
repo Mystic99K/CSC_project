@@ -1,31 +1,47 @@
 import requests
 from ui import *
 from utils import *
+import time
 
 def show_weather(selected_prof):
     weather_data = None
     city = None
+    search_data = None
     
     if not selected_prof:
         print("Your don't have a profile! Switching to guest mode...")
         city = input("Enter your city name: ")
-        testdata = search_city(city)
+        search_data = search_city(city)
         
     else:
         city = selected_prof["city"]
         
-        testdata = search_city(city)
+        search_data = search_city(city)
+        
+    if search_data is None:
+        print("Error: city data is none!")
+        input("Enter to go back: ")
+        return
+    
+    if len(search_data) > 1:
 
-    print("Did u mean:")
-    for i, dict in enumerate(testdata, start=1):
-        print(f"{i} . {dict['name']} ({dict['country']})")
+        print("Did u mean:")
+        for i, dict in enumerate(search_data, start=1):
+            print(f"{i} . {dict['name']} ({dict['country']})")
 
-    choice = int(input("Enter choice: "))  # Get user input
-    mycity = testdata[choice-1]['name']  # Subtract 1 because list indices start at 0
+        choice = int(input("Enter choice: "))  # Get user input
+        city = search_data[choice-1]['name']  # Subtract 1 because list indices start at 0
+    
+    elif len(search_data) == 1:
+        city = search_data[0]['name']
+    
+    else:
+        print('Error: No such city from')
+        return
 
-    weather_data = get_weather_data(mycity)
+    weather_data = get_weather_data(city)
     if weather_data is None:
-        print("Error: weather_data is none!")
+        print("Error: weather data is none!")
         input("Enter to go back: ")
         return 
     
@@ -110,7 +126,32 @@ def show_weather(selected_prof):
         elif usr_choice == "5":
             city = input(
                 f"""Enter your city name (Your City-{city}): """)
+        
+            search_data = search_city(city)
+        
+            if len(search_data) > 1:
+
+                print("Did u mean:")
+                for i, dict in enumerate(search_data, start=1):
+                    print(f"{i} . {dict['name']} ({dict['country']})")
+
+                choice = int(input("Enter choice: "))  # Get user input
+                city = search_data[choice-1]['name']  # Subtract 1 because list indices start at 0
+            
+            elif len(search_data) == 1:
+                city = search_data[0]['name']
+            
+            else:
+                print('Error: No such city from')
+                return
+            
+            print(city)
+            
+            time.sleep(2)
+                
             weather_data = get_weather_data(city)
+            
+            
             if weather_data is None:
                 print("Error: weather_data is none!")
                 input("Enter to go back: ")
@@ -129,12 +170,20 @@ def get_weather_data(city):  # Getting API response
         data = response.json()
         return data
     else:
-        print(f"Could not find weather data for {city}.")
+        print(f"Could not find weather data for '{city}'.")
         error_handle(response.status_code)
         return None
     
 def search_city(city):  # Returns closely matched names
     url = f"http://api.weatherapi.com/v1/search.json?key={API_KEY}&q={city}"
     response = requests.get(url)
-    data = response.json()
-    return data
+    if response.status_code == 200:
+        data = response.json()
+        return data
+    
+    else:
+        print(f"Could not find city data for '{city}'.")
+        error_handle(response.status_code)
+        return None
+    
+    
