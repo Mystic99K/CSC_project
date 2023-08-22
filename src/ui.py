@@ -3,19 +3,20 @@ from rich.console import Console
 from rich.text import Text
 from rich.prompt import Prompt
 from rich.layout import Layout
+from rich.align import Align
 
 main_console = Console(color_system="standard")
 w_console = Console(color_system="standard",height=8)
-align = "Left"
+align = "center"  #Change this to left or center
 
 def print_menu(console, heading, tex_color,border_color, menu):
     menu_pan = Panel(
-        menu,
+        Align(menu,align),
         title = heading,
         border_style = border_color,
         subtitle = "",
-        style=f"{tex_color}"
-    )
+        style=f"{tex_color}",
+    ) 
     
     console.print(menu_pan)
     
