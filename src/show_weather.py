@@ -3,6 +3,29 @@ from ui import *
 from utils import *
 import time
 
+def get_weather_data(city):  # Getting API response
+    url = f"http://api.weatherapi.com/v1/current.json?key={API_KEY}&q={city}"
+    response = requests.get(url)
+    if response.status_code == 200:
+        data = response.json()
+        return data
+    else:
+        print(f"Could not find weather data for '{city}'.")
+        error_handle(response.status_code)
+        return None
+    
+def search_city(city):  # Returns closely matched names
+    url = f"http://api.weatherapi.com/v1/search.json?key={API_KEY}&q={city}"
+    response = requests.get(url)
+    if response.status_code == 200:
+        data = response.json()
+        return data
+    
+    else:
+        print(f"Could not find city data for '{city}'.")
+        error_handle(response.status_code)
+        return None
+
 def show_weather(selected_prof):
     weather_data = None
     city = None
@@ -161,29 +184,4 @@ def show_weather(selected_prof):
             break
         else:
             input("Error: Invalid input (ENTER): ")
-
-
-def get_weather_data(city):  # Getting API response
-    url = f"http://api.weatherapi.com/v1/current.json?key={API_KEY}&q={city}"
-    response = requests.get(url)
-    if response.status_code == 200:
-        data = response.json()
-        return data
-    else:
-        print(f"Could not find weather data for '{city}'.")
-        error_handle(response.status_code)
-        return None
-    
-def search_city(city):  # Returns closely matched names
-    url = f"http://api.weatherapi.com/v1/search.json?key={API_KEY}&q={city}"
-    response = requests.get(url)
-    if response.status_code == 200:
-        data = response.json()
-        return data
-    
-    else:
-        print(f"Could not find city data for '{city}'.")
-        error_handle(response.status_code)
-        return None
-    
     
