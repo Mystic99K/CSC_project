@@ -34,7 +34,7 @@ def __main__():
         if selected_prof:
             print(f"Logged in as - {selected_prof["name"]}")
         else:
-            print(f"Logged in as guest")
+            print(f"Logged in as - Guest")
         print_menu(
             main_console,
             'Main Menu',
