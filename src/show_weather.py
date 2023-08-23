@@ -31,20 +31,14 @@ def show_weather(selected_prof):
     city = None
     search_data = None
     
-    if not selected_prof:
+    if selected_prof == {}:
         print("Your don't have a profile! Switching to guest mode...")
         city = input("Enter your city name: ")
         search_data = search_city(city)
         
     else:
         city = selected_prof["city"]
-        
         search_data = search_city(city)
-        
-    if search_data is None:
-        print("Error: city data is none!")
-        input("Enter to go back: ")
-        return
     
     if len(search_data) > 1:
 
