@@ -1,7 +1,6 @@
 --------PENDING---------
 - add search function linear and fuzzy at 60% - PENDING
 - show successful message after changing city - PENDING
-- use try except to catch keyboard interrupt (during login or password) - PENDING
 - integerate did u mean feature from panel test - half baked rn
 - changing units of measurements by user - PENDING
 - adding city title to weather data layout table - PENDING
@@ -19,3 +18,5 @@
 - clear screen using rich - using simple cli clear
 - update selected prof to edited profile - done
 - use rich password prompt - used pwinput
+
+- use try except to catch keyboard interrupt (during login or password) - not doing it
