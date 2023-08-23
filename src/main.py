@@ -31,33 +31,21 @@ def __main__():
 
     while True:
         cls()
-        
         if selected_prof:
-            print_menu(
-                main_console,
-                'Main Menu',
-                'bright_cyan',
-                'bright_yellow',
-                Text()
-                    .append(f"""[Currently logged in as '{selected_prof["name"]}']\n""", style="italic red")
-                    .append("1. Login\n")
-                    .append("2. Show weather\n")
-                    .append("3. Options\n")
-                    .append("4. Logout\n")
-                    .append("5. Exit program\n")
-            )
+            print(f"Logged in as - {selected_prof["name"]}")
         else:
-            print_menu(
-                main_console,
-                'Main Menu',
-                'bright_cyan',
-                'bright_yellow',
-                Text()
-                    .append(f"""[Currently logged in as 'Guest']\n""", style="italic red")
-                    .append("1. Login\n")
-                    .append("2. Show weather\n")
-                    .append("3. Options\n")
-                    .append("4. Exit program\n")
+            print(f"Logged in as guest")
+        print_menu(
+            main_console,
+            'Main Menu',
+            'bright_cyan',
+            'bright_yellow',
+            Text()
+                .append("1. Login\n")
+                .append("2. Show weather\n")
+                .append("3. Options\n")
+                .append("4. Logout\n")
+                .append("5. Exit program\n")
             )
 
         
@@ -70,16 +58,16 @@ def __main__():
             show_weather(selected_prof)
         elif usr_choice == "3":
             options(conn, cursor, crypt_cipher, selected_prof)
-        elif selected_prof:
-            if usr_choice == "4":
+        elif usr_choice == "4":
+            if selected_prof:
                 selected_prof = {}
                 cls()
                 print("Logged out! Switching to Guest...")
                 input("Enter to go back:")    
-            elif usr_choice == "5":
-                print("Exited program!")
-                break
-        elif usr_choice == "4":
+            else:
+                print("You are not logged in!")
+                input("Enter to go back:")
+        elif usr_choice == "5":
             print("Exited program!")
             break
         else:
