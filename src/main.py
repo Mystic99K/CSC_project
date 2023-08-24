@@ -23,12 +23,12 @@ def __main__():
                 .append("2. Show weather\n") \
                 .append("3. Options\n") \
                 .append("4. Logout\n") \
-                .append("5. Exit program\n");
+                .append("5. Exit program");
     guestMenu = Text() \
                 .append("1. Login\n") \
                 .append("2. Show weather\n") \
                 .append("3. Options\n") \
-                .append("4. Exit program\n");
+                .append("4. Exit program");
                 
     if not db_exists:
         try:
@@ -44,7 +44,7 @@ def __main__():
     while True:
         cls()
         if selected_prof:
-            print(f"Logged in as - {selected_prof["""name"""]}")
+            print(f"""Logged in as - {selected_prof["name"]}""")
             print_menu( main_console, 'Main Menu', 'bright_cyan', 'bright_yellow', loggedInMenu )
         else:
             print(f"Logged in as - Guest")

@@ -66,81 +66,56 @@ def show_weather(selected_prof):
         cls()
         
         print_menu(
-                w_console,
+                main_console,
                 'Weather Menu',
                 'bright_cyan',
                 'bright_yellow',
                 Text()
-                    .append("1. Show all Weather report\n")
-                    .append("2. Temperature\n")
-                    .append("3. Wind\n")
-                    .append("4. Visibility\n")
-                    .append("5. Show report of different city\n")
-                    .append("6. Exit weather menu\n")
+                    .append("1. Show Weather report\n")
+                    .append("2. Show report of different city\n")
+                    .append("3. Exit weather menu")
             )
-
-        temperature_data = f"Temperature(°C): {weather_data['current']['temp_c']}°C\n"
-        temperature_data += f"Temperature(°F): {weather_data['current']['temp_f']}°F\n"
-        temperature_data += f"Feels like(°C): {weather_data['current']['feelslike_c']}°C\n"
-        temperature_data += f"Feels like(°F): {weather_data['current']['feelslike_f']}°F"
-
-        wind_data = f"Wind Speed(mph): {weather_data['current']['wind_mph']}m/h\n"
-        wind_data += f"Max Wind Speed(mph): {weather_data['current']['gust_mph']}m/h\n"
-        wind_data += f"Wind Speed(kmph): {weather_data['current']['wind_kph']}km/h\n"
-        wind_data += f"Max Wind Speed(kmph): {weather_data['current']['gust_kph']}km/h\n"
-        wind_data += f"Wind Degree: {weather_data['current']['wind_degree']}°\n"
-        wind_data += f"Wind Direction: {weather_data['current']['wind_dir']}"
-
-        visib_data = f"Visibility(km): {weather_data['current']['vis_km']}\n"
-        visib_data += f"Visibility(Miles): {weather_data['current']['vis_miles']}"
         
-        temp = Panel(temperature_data,title='Temperature',border_style='bright_yellow',style='bright_cyan')
-        wind = Panel(wind_data,title='Wind',border_style='bright_yellow',style='bright_cyan')
-        visib = Panel(visib_data,title='Visiblity',border_style='bright_yellow',style='bright_cyan')
+        
+        weather_menu = f"Condition: {weather_data['current']['condition']['text']}\n\n"
+
+        weather_menu += f"Temperature: {weather_data['current']['temp_c']}°C\n"
+        weather_menu += f"Temperature: {weather_data['current']['temp_f']}°F\n"
+        weather_menu += f"Feels like: {weather_data['current']['feelslike_c']}°C\n"
+        weather_menu += f"Feels like: {weather_data['current']['feelslike_f']}°F\n\n"
+        
+        weather_menu += f"Pressure: {weather_data['current']['pressure_mb']}mb\n"
+        weather_menu += f"Pressure: {weather_data['current']['pressure_in']}inch\n\n"
+        
+        weather_menu += f"Precipitation: {weather_data['current']['precip_mm']}mm\n"
+        weather_menu += f"Precipitation: {weather_data['current']['precip_in']}inch\n"
+        weather_menu += f"Humidity: {weather_data['current']['humidity']}%\n"
+        weather_menu += f"Cloud: {weather_data['current']['cloud']}%\n\n"
+
+        weather_menu += f"Wind Speed: {weather_data['current']['wind_mph']}m/h\n"
+        weather_menu += f"Max Wind Speed: {weather_data['current']['gust_mph']}m/h\n"
+        weather_menu += f"Wind Speed: {weather_data['current']['wind_kph']}km/h\n"
+        weather_menu += f"Max Wind Speed: {weather_data['current']['gust_kph']}km/h\n"
+        weather_menu += f"Wind Degree: {weather_data['current']['wind_degree']}°\n"
+        weather_menu += f"Wind Direction: {weather_data['current']['wind_dir']}\n\n"
+
+        weather_menu += f"Visibility: {weather_data['current']['vis_km']}\n"
+        weather_menu += f"Visibility: {weather_data['current']['vis_miles']}\n\n"
+        
+        weather_menu += f"UV Index: {weather_data['current']['uv']}"
+        
+        
+        weather_pannel = Panel(weather_menu,title='Weather Report',border_style='bright_yellow',style='bright_cyan')
 
         usr_choice = input('Enter your choice: ')
         cls()
 
         print()  # Adding Blank space
         if usr_choice == "1":
-            layout = Layout(name="root")
-            layout.split_row(
-                Layout(temp),
-                Layout(wind),
-                Layout(visib),
-                )
-            m_panel = Panel(layout,title='Weather Data - ' + city ,border_style='bright_yellow',style='bright_cyan')
-            w_console.print(m_panel)
+            main_console.print(weather_pannel)
             input("Enter to go back: ")
             
         elif usr_choice == "2":
-            layout = Layout(name="root")
-            layout.split_row(
-                Layout(temp),
-                )
-            m_panel = Panel(layout,title='Weather Data - ' + city,border_style='bright_yellow',style='bright_cyan')
-            w_console.print(m_panel)
-            input("Enter to go back: ")
-            
-        elif usr_choice == "3":
-            layout = Layout(name="root")
-            layout.split_row(
-                Layout(wind)
-                )
-            m_panel = Panel(layout,title='Weather Data',border_style='bright_yellow',style='bright_cyan')
-            w_console.print(m_panel)
-            input("Enter to go back: ")
-            
-        elif usr_choice == "4":
-            layout = Layout(name="root")
-            layout.split_row(
-                Layout(visib)
-                )
-            m_panel = Panel(layout,title='Weather Data')
-            w_console.print(m_panel)
-            input("Enter to go back: ")
-            
-        elif usr_choice == "5":
             city = input(
                 f"""Enter your city name (Your City-{city}): """)
         
@@ -174,7 +149,7 @@ def show_weather(selected_prof):
                 input("Enter to go back: ")
                 return
             
-        elif usr_choice == "6":
+        elif usr_choice == "3":
             break
         else:
             input("Error: Invalid input (ENTER): ")
