@@ -44,7 +44,7 @@ def __main__():
     while True:
         cls()
         if selected_prof:
-            print(f"Logged in as - {selected_prof["name"]}")
+            print(f"Logged in as - {selected_prof["""name"""]}")
             print_menu( main_console, 'Main Menu', 'bright_cyan', 'bright_yellow', loggedInMenu )
         else:
             print(f"Logged in as - Guest")
