@@ -1,5 +1,5 @@
 --------PENDING---------
-- add search function linear and fuzzy at 60% - PENDING
+- add search function linear - PENDING
 - show successful message after changing city - PENDING
 - integerate did u mean feature from panel test - half baked rn
 - changing units of measurements by user - PENDING
