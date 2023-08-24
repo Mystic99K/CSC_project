@@ -18,6 +18,18 @@ def __main__():
     crypt_cipher = crypt.Fernet(PASSWRD_ENCRYPTION_KEY)
     selected_prof = {}
     
+    loggedInMenu = Text() \
+                .append("1. Change Profile\n") \
+                .append("2. Show weather\n") \
+                .append("3. Options\n") \
+                .append("4. Logout\n") \
+                .append("5. Exit program\n");
+    guestMenu = Text() \
+                .append("1. Login\n") \
+                .append("2. Show weather\n") \
+                .append("3. Options\n") \
+                .append("4. Exit program\n");
+                
     if not db_exists:
         try:
             # Creating the table even if it already exists
@@ -33,22 +45,11 @@ def __main__():
         cls()
         if selected_prof:
             print(f"Logged in as - {selected_prof["name"]}")
+            print_menu( main_console, 'Main Menu', 'bright_cyan', 'bright_yellow', loggedInMenu )
         else:
             print(f"Logged in as - Guest")
-        print_menu(
-            main_console,
-            'Main Menu',
-            'bright_cyan',
-            'bright_yellow',
-            Text()
-                .append("1. Login\n")
-                .append("2. Show weather\n")
-                .append("3. Options\n")
-                .append("4. Logout\n")
-                .append("5. Exit program\n")
-            )
+            print_menu( main_console, 'Main Menu', 'bright_cyan', 'bright_yellow', guestMenu )
 
-        
         usr_choice = input('Enter your choice: ')
 
 
@@ -65,11 +66,15 @@ def __main__():
                 print("Logged out! Switching to Guest...")
                 input("Enter to go back:")    
             else:
-                print("You are not logged in!")
-                input("Enter to go back:")
+                print("Exited program!")
+                break
         elif usr_choice == "5":
-            print("Exited program!")
-            break
+            if selected_prof:
+                print("Exited program!")
+                break
+            else:
+                input("Error: Invalid input (ENTER): ")
+                continue
         else:
             input("Error: Invalid input (ENTER): ")
             continue

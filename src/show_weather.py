@@ -109,7 +109,7 @@ def show_weather(selected_prof):
                 Layout(wind),
                 Layout(visib),
                 )
-            m_panel = Panel(layout,title='Weather Data',border_style='bright_yellow',style='bright_cyan')
+            m_panel = Panel(layout,title='Weather Data - ' + city ,border_style='bright_yellow',style='bright_cyan')
             w_console.print(m_panel)
             input("Enter to go back: ")
             
@@ -118,7 +118,7 @@ def show_weather(selected_prof):
             layout.split_row(
                 Layout(temp),
                 )
-            m_panel = Panel(layout,title='Weather Data',border_style='bright_yellow',style='bright_cyan')
+            m_panel = Panel(layout,title='Weather Data - ' + city,border_style='bright_yellow',style='bright_cyan')
             w_console.print(m_panel)
             input("Enter to go back: ")
             

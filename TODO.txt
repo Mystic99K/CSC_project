@@ -3,7 +3,6 @@
 - show successful message after changing city - PENDING
 - integerate did u mean feature from panel test - half baked rn
 - changing units of measurements by user - PENDING
-- adding city title to weather data layout table - PENDING
 - if only one city, dont show did u mean, do for both guest and logged in user - PENDING
 - visibility looks gae - PENDING
 - show report of different city - PENDING
@@ -18,5 +17,5 @@
 - clear screen using rich - using simple cli clear
 - update selected prof to edited profile - done
 - use rich password prompt - used pwinput
-
+- adding city title to weather data layout table - DONE
 - use try except to catch keyboard interrupt (during login or password) - not doing it
