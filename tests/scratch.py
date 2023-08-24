@@ -1,30 +1,3 @@
-import os
-import getch
+from rich import print as ps
 
-def input_password(prompt='Password: '):
-    print(prompt, end='', flush=True)
-    password = ''
-    
-    while True:
-        char = ""
-        if os.name == "nt":
-            char = msvcrt.getch().decode('utf-8')
-        else:
-            char = getch.getch()
-            
-        if char == '\r' or char == '\n':
-            break
-        
-        
-        
-        if char == '\b':
-            password = password[:-1]
-            print('\b \b', end='', flush=True)
-        else:
-            password += char
-            print('*', end='', flush=True)
-    
-    print()
-    return password
-
-print(input_password())
+ps({"location":{"name":"Kuwait","region":"Al Kuwayt","country":"Kuwait","lat":29.37,"lon":47.98,"tz_id":"Asia/Kuwait","localtime_epoch":1692903281,"localtime":"2023-08-24 21:54"},"current":{"temp_c":41.5,"temp_f":106.7,"is_day":0,"condition":{"text":"Clear","code":1000},"wind_mph":22.8,"wind_kph":36.7,"wind_degree":322,"wind_dir":"NW","pressure_mb":998.0,"pressure_in":29.46,"precip_mm":0.0,"precip_in":0.0,"humidity":17,"cloud":0,"feelslike_c":42.2,"feelslike_f":108.0,"vis_km":10.0,"vis_miles":6.0,"uv":1.0,"gust_mph":47.9,"gust_kph":77.0}})
