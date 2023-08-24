@@ -6,7 +6,8 @@
 - trigger did u mean in creating new profile menu - PENDING
 - uniform errors and outputs - PENDING
 - re add new data into weather data - PENDING
-
+- access options using selected_prof
+- edit options using SQL executre 
 
 
 
