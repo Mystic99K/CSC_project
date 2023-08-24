@@ -1,12 +1,17 @@
 --------PENDING---------
 - add search function linear - PENDING
 - show successful message after changing city - PENDING
-- integerate did u mean feature from panel test - half baked rn
+- error if nothing is entered in city input - PENDING
 - changing units of measurements by user - PENDING
-- visibility looks gae - PENDING
-- show report of different city - PENDING
 - trigger did u mean in creating new profile menu - PENDING
 - uniform errors and outputs - PENDING
+- re add new data into weather data - PENDING
+
+
+
+
+
+
 
 
 --------done-----------
@@ -19,3 +24,5 @@
 - adding city title to weather data layout table - DONE
 - use try except to catch keyboard interrupt (during login or password) - not doing it
 - if only one city, dont show did u mean, do for both guest and logged in user - DONE
+- integerate did u mean feature from panel test - done
+- show report of different city - done
