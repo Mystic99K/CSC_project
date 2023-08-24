@@ -5,6 +5,7 @@ from utils import *
 from login import login
 from show_weather import show_weather
 from options import options
+import json
 
 console = Console()
 
@@ -18,6 +19,13 @@ def __main__():
     crypt_cipher = crypt.Fernet(PASSWRD_ENCRYPTION_KEY)
     selected_prof = {}
     
+    testdict = {"unit":'m', "color":'black'}
+    jsoned = json.dumps(testdict)
+    cursor.execute(
+                    "UPDATE profile SET testfield = ? where id = ?;",
+                    (jsoned, 29)
+                )
+    conn.commit()
     loggedInMenu = Text() \
                 .append("1. Change Profile\n") \
                 .append("2. Show weather\n") \
@@ -33,7 +41,7 @@ def __main__():
     if not db_exists:
         try:
             # Creating the table even if it already exists
-            create_table_query = 'CREATE TABLE "profile" ("id" INTEGER UNIQUE, "name" TEXT UNIQUE, "city" TEXT, "password_hash" BLOB, PRIMARY KEY("id" AUTOINCREMENT));'
+            create_table_query = 'CREATE TABLE "profile" ("id" INTEGER UNIQUE, "name" TEXT UNIQUE, "city" TEXT, "password_hash" BLOB, "testfield" TEXT, ,PRIMARY KEY("id" AUTOINCREMENT));'
             cursor.execute(create_table_query)
         except:
             pass
@@ -43,6 +51,7 @@ def __main__():
 
     while True:
         cls()
+        
         if selected_prof:
             print(f"""Logged in as - {selected_prof["name"]}""")
             print_menu( main_console, 'Main Menu', 'bright_cyan', 'bright_yellow', loggedInMenu )
@@ -55,6 +64,8 @@ def __main__():
 
         if usr_choice == "1":
             login(cursor, crypt_cipher, selected_prof)
+            print(selected_prof)
+            input()
         elif usr_choice == "2":
             show_weather(selected_prof)
         elif usr_choice == "3":
