@@ -41,7 +41,7 @@ def __main__():
     if not db_exists:
         try:
             # Creating the table even if it already exists
-            create_table_query = 'CREATE TABLE "profile" ("id" INTEGER UNIQUE, "name" TEXT UNIQUE, "city" TEXT, "password_hash" BLOB, "testfield" TEXT, ,PRIMARY KEY("id" AUTOINCREMENT));'
+            create_table_query = 'CREATE TABLE "profile" ("id" INTEGER UNIQUE, "name" TEXT UNIQUE, "city" TEXT, "password_hash" BLOB, "testfield" TEXT ,PRIMARY KEY("id" AUTOINCREMENT));'
             cursor.execute(create_table_query)
         except:
             pass

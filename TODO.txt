@@ -8,7 +8,7 @@
 - re add new data into weather data - PENDING
 - access options using selected_prof
 - edit options using SQL executre 
-
+- ADD OPTIONS JSON - PENDING IMP
 
 
 
