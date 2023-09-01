@@ -35,6 +35,7 @@ def show_weather(selected_prof):
         print("Your don't have a profile! Switching to guest mode...")
         city = input("Enter your city name: ")
         search_data = search_city(city)
+        unit = unit_menu()
         
     else:
         city = selected_prof["city"]

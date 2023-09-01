@@ -8,6 +8,7 @@ from ui import *
 from rich.table import Table
 from rich.console import Console
 from rich import box
+import json
 
 
 def options(conn, cursor, crypt_cipher, selected_prof):
@@ -37,11 +38,15 @@ def options(conn, cursor, crypt_cipher, selected_prof):
                     input_password("Enter profile's password: ").encode("utf-8")
                 )
             }
-
+            
+            unit = unit_menu()
+            setting = {'unit':unit}
+            setting_json = json.dumps(setting)
+                
             try:
                 cursor.execute(
-                    """INSERT INTO profile(name, city, password_hash) VALUES (?, ?, ?);""",
-                    (prof["name"], prof["city"], prof["password_hash"])
+                    """INSERT INTO profile(name, city, password_hash, setting) VALUES (?, ?, ?, ?);""",
+                    (prof["name"], prof["city"], prof["password_hash"], setting_json)
                 )
 
                 conn.commit()

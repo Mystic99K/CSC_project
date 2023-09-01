@@ -5,7 +5,6 @@ from utils import *
 from login import login
 from show_weather import show_weather
 from options import options
-import json
 
 console = Console()
 
@@ -19,13 +18,6 @@ def __main__():
     crypt_cipher = crypt.Fernet(PASSWRD_ENCRYPTION_KEY)
     selected_prof = {}
     
-    testdict = {"unit":'m', "color":'black'}
-    jsoned = json.dumps(testdict)
-    cursor.execute(
-                    "UPDATE profile SET testfield = ? where id = ?;",
-                    (jsoned, 29)
-                )
-    conn.commit()
     loggedInMenu = Text() \
                 .append("1. Change Profile\n") \
                 .append("2. Show weather\n") \
