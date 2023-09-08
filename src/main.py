@@ -19,7 +19,7 @@ def __main__():
     main_menu = Text() \
                 .append("1. Show weather\n") \
                 .append("2. Options\n") \
-                .append("3. Exit program");
+                .append("3. Exit program")
                 
     if not db_exists:
         try:
@@ -43,7 +43,7 @@ def __main__():
         if usr_choice == "1":
             show_weather()
         elif usr_choice == "2":
-            options(conn, cursor, crypt_cipher, selected_prof)
+            options(conn, cursor, crypt_cipher, None)
         elif usr_choice == "3":
             print("Exited program!")
             break

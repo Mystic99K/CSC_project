@@ -30,19 +30,17 @@ def options(conn, cursor, crypt_cipher, selected_prof):
             Text()
                 .append("1. Change unit\n")
                 .append("2. Change alignment\n")
-                .append("6. Exit options menu")
+                .append("3. Exit options menu")
         )
 
         choice_o = input("Enter your choice: ")
 
         if choice_o == "1":
-            unit_conf = unit_menu()
-            conf = read_conf()
-            conf['unit'] == unit_conf
+            unitPref = unit_menu()
+            loadedConf = read_conf()
+            
         elif choice_o == "2":
             print('') #trq do this partttt me hab to goooooooooooooooooooooo
-            conf = read_conf()
-            conf['unit'] == unit_conf
         elif choice_o == "3":
             break
         else:
