@@ -1,22 +1,14 @@
-from rich.layout import Layout
+import json
 
-from rich import print
-from rich.table import Table
 
-# Create a table
-table = Table(show_header=True, header_style="bold magenta")
-table.add_column("METRIC")
-table.add_column("IMPERIAL")
-
-# Add rows to the table
-table.add_row("Celsius", "Fahrenheit")
-table.add_row("Kph", "Mph")
-table.add_row("mb", "in")
-table.add_row("mm", "in")
-table.add_row("km", "Miles")
-
-# Print the table
-print(table)
-
-print("1. Metric\n2. Imperal")
-unitpref = input("Enter unit preference:")
+def write_conf(setting_obj):
+    with open('config.json','w') as conf_file:
+        conf = json.dumps(setting_obj)
+        conf_file.write(conf)
+        
+        
+def read_conf():
+    with open('config.json','r') as conf_file:
+        conf = json.loads(conf_file.read())
+        return conf
+        

@@ -2,7 +2,7 @@ import cryptography.fernet as crypt
 import sqlite3
 from ui import *
 from utils import *
-from login import login
+# from login import login
 from show_weather import show_weather
 from options import options
 
@@ -42,7 +42,7 @@ def __main__():
 
 
         if usr_choice == "1":
-            show_weather(selected_prof)
+            show_weather()
         elif usr_choice == "2":
             options(conn, cursor, crypt_cipher, selected_prof)
         elif usr_choice == "3":

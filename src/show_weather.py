@@ -26,21 +26,15 @@ def search_city(city):  # Returns closely matched names
         error_handle(response.status_code)
         return None
 
-def show_weather(selected_prof):
+def show_weather():
     weather_data = None
     city = None
     search_data = None
-    
-    if selected_prof == {}:
-        print("Your don't have a profile! Switching to guest mode...")
-        city = input("Enter your city name: ")
-        search_data = search_city(city)
-        unit = unit_menu()
-        
-    else:
-        city = selected_prof["city"]
-        search_data = search_city(city)
-    
+
+    city = input("Enter your city name: ")
+    search_data = search_city(city)
+    unit = unit_menu()
+
     if len(search_data) > 1:
 
         print("Did u mean:")

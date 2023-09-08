@@ -6,6 +6,7 @@ from rich.layout import Layout
 from rich.align import Align
 from rich.table import Table
 from utils import *
+from rich import box
 
 main_console = Console(color_system="standard")
 align = "left"  #Change this to left or center
@@ -37,28 +38,31 @@ def print_menu(console, heading, tex_color,border_color, menu):
 
 def unit_menu():
     while True:
-        cls()
+        os.system('clear')
         
-        table = Table(show_header=True, header_style="bold magenta")
-        table.add_column("METRIC")
-        table.add_column("IMPERIAL")
+        table = Table(show_header=True, header_style="bold bright_magenta",border_style='bright_yellow' , show_lines=True, box=box.DOUBLE_EDGE)
+        table.add_column("METRIC",justify="center",min_width=10)
+        table.add_column("IMPERIAL",justify="center",min_width=10)
 
         table.add_row("Celsius", "Fahrenheit")
         table.add_row("Kph", "Mph")
         table.add_row("mb", "in")
         table.add_row("mm", "in")
-        table.add_row("km", "Miles")
+        table.add_row("km", "mi")
         
         main_console.print(table)
 
-        print("1. Metric\n2. Imperal")
+        print("1. Metric\n2. Imperal\n3. Both")
         unitpref = input("Enter unit preference:")
         
         if unitpref == '1':
-            setting = 1  #Metic
+            setting = 0  #Metic
             return setting
         elif unitpref == '2':
-            setting = 0  #Impirial
+            setting = 1  #Impirial
+            return setting
+        elif unitpref == '2':
+            setting = 3  #Impirial
             return setting
         else:
             input("Error: Invalid input (ENTER): ")
