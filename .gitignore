@@ -1,6 +1,6 @@
 /.idea/
-errors/error_log.txt
-tests/scratch.py
+/errors/error_log.txt
+/tests/scratch.py
 /src/__pycache__/
-.vscode/settings.json
-tests/scratch.py
+/.vscode/settings.json
+/tests/scratch.py

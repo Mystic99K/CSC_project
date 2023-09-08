@@ -16,19 +16,11 @@ def __main__():
     cursor = conn.cursor()
 
     crypt_cipher = crypt.Fernet(PASSWRD_ENCRYPTION_KEY)
-    selected_prof = {}
     
-    loggedInMenu = Text() \
-                .append("1. Change Profile\n") \
-                .append("2. Show weather\n") \
-                .append("3. Options\n") \
-                .append("4. Logout\n") \
-                .append("5. Exit program");
-    guestMenu = Text() \
-                .append("1. Login\n") \
-                .append("2. Show weather\n") \
-                .append("3. Options\n") \
-                .append("4. Exit program");
+    main_menu = Text() \
+                .append("1. Show weather\n") \
+                .append("2. Options\n") \
+                .append("3. Exit program");
                 
     if not db_exists:
         try:
@@ -44,40 +36,18 @@ def __main__():
     while True:
         cls()
         
-        if selected_prof:
-            print(f"""Logged in as - {selected_prof["name"]}""")
-            print_menu( main_console, 'Main Menu', 'bright_cyan', 'bright_yellow', loggedInMenu )
-        else:
-            print(f"Logged in as - Guest")
-            print_menu( main_console, 'Main Menu', 'bright_cyan', 'bright_yellow', guestMenu )
+        print_menu( main_console, 'Main Menu', 'bright_cyan', 'bright_yellow', main_menu )
 
         usr_choice = input('Enter your choice: ')
 
 
         if usr_choice == "1":
-            login(cursor, crypt_cipher, selected_prof)
-            print(selected_prof)
-            input()
-        elif usr_choice == "2":
             show_weather(selected_prof)
-        elif usr_choice == "3":
+        elif usr_choice == "2":
             options(conn, cursor, crypt_cipher, selected_prof)
-        elif usr_choice == "4":
-            if selected_prof:
-                selected_prof = {}
-                cls()
-                print("Logged out! Switching to Guest...")
-                input("Enter to go back:")    
-            else:
-                print("Exited program!")
-                break
-        elif usr_choice == "5":
-            if selected_prof:
-                print("Exited program!")
-                break
-            else:
-                input("Error: Invalid input (ENTER): ")
-                continue
+        elif usr_choice == "3":
+            print("Exited program!")
+            break
         else:
             input("Error: Invalid input (ENTER): ")
             continue
