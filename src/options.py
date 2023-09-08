@@ -1,8 +1,6 @@
 import sqlite3
 
 from utils import *
-# from login import parse_prof
-# from login import input_password
 from ui import *
 
 from rich.table import Table

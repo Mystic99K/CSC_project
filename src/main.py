@@ -2,7 +2,6 @@ import cryptography.fernet as crypt
 import sqlite3
 from ui import *
 from utils import *
-# from login import login
 from show_weather import show_weather
 from options import options
 
